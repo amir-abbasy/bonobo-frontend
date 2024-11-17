@@ -1,0 +1,147 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+.table-col {
+  @apply min-w-48 mr-4;
+}
+
+
+.button-primary {
+  @apply cursor-pointer text-white p-2 px-6 flex items-center justify-center bg-gradient-to-r from-brand-primary to-brand-primaryDark hover:from-45% from-65% w-fit rounded-full transition-all duration-700
+}
+
+
+@supports (font-variation-settings: normal) {
+  :root {
+    font-family: InterVariable, sans-serif;
+  }
+}
+
+/* blue: #2975BB
+blue-dark : #1B4CA1
+blue-light : #D3E1F3
+orange : #F69F1C */
+
+:root {
+  font-family: Inter, sans-serif;
+  font-feature-settings: 'liga' 1, 'calt' 1;
+  /* fix for Chrome */
+  line-height: 1.5;
+  font-weight: 300;
+  font-size: 1rem;
+
+  /* color-scheme: light dark; */
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+
+/* Customize the scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  /* Width of the scrollbar */
+  height: 8px;
+  /* Height for horizontal scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: theme('colors.brand.background');
+  /* Track color */
+}
+
+::-webkit-scrollbar-thumb {
+  background: theme('colors.brand.primaryLight');
+  /* Thumb color */
+  border-radius: 4px;
+  /* Rounded edges for the thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: theme('colors.brand.primary');
+  /* Thumb color on hover */
+}
+
+
+
+a {
+  font-weight: 500;
+  color: theme('colors.brand.primary');
+  text-decoration: inherit;
+}
+
+a:hover {
+  color: theme('colors.brand.primaryDark');
+}
+
+body {
+  margin: 0;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+
+  a:hover {
+    color: #747bff;
+  }
+
+  button {
+    background-color: #f9f9f9;
+  }
+}
+
+
+
+.skeleton {
+  background-image: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+  background-size: 40px 100%;
+  background-repeat: no-repeat;
+  background-position: left -40px top 0;
+  -webkit-animation: shine 1s ease infinite;
+  animation: shine 1s ease infinite;
+}
+
+@-webkit-keyframes shine {
+  to {
+    background-position: right -40px top 0;
+  }
+}
+
+@keyframes shine {
+  to {
+    background-position: right -40px top 0;
+  }
+}
+
+
+
+.fadein_anim_menu_item {
+  animation: fadeIn .3s ease-in-out;
+  /* 2s duration, easing effect */
+}
+
+/* Define the fade-in animation */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    /* start as invisible */
+  }
+
+  100% {
+    opacity: 1;
+    /* end as fully visible */
+  }
+}
+
+
+
+.chartjs-render-monitor {
+  border: none !important;
+}

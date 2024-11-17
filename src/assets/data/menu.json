@@ -1,0 +1,32 @@
+[
+    {
+        "name": "Dashboard",
+        "path":"/",
+        "icon": ""
+    },
+    {
+        "name": "SMTP",
+        "path":"/smtp",
+        "icon": ""
+    },
+    {
+        "name": "Amazon SES",
+        "path":"/ses",
+        "icon": ""
+    },
+    {
+        "name": "Templates",
+        "path":"/templates",
+        "icon": ""
+    },
+    {
+        "name": "Contact List",
+        "path":"/contact",
+        "icon": ""
+    },
+    {
+        "name": "Campaigns",
+        "path":"/campaigns",
+        "icon": ""
+    }
+]
