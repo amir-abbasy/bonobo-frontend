@@ -61,15 +61,12 @@ const DropDown = ({
 
 
 
-
-
-
   return <div className={`relative ${classNameContainer} ${disabled ? 'opacity-40' : ''}`} ref={wrapperRef}>
     {/* custom picker */}
     {picker ? <div onClick={() => !disabled && setOpen(!isOpen)}>{picker?.()}</div> :
       <>
         {title && <p className={ClassNameTitle}>{title}</p>}
-        <button className={twMerge(`bg-[#cccccc20] flex justify-between items-center p-3 my-2 outline-none rounded-lg text-black text-lg placeholder:text-primary w-full ${className}`)}
+        <button className={twMerge(`flex justify-between items-center rounded-xl px-3 py-2 outline-none border border-brand-background hover:border-brand-primary focus:border-brand-primary w-full ${className}`)}
           onClick={() => !disabled && setOpen(!isOpen)}>
           <div className="flex gap-1">
 

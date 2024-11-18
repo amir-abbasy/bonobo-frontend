@@ -10,7 +10,7 @@
 
 
 .button-primary {
-  @apply cursor-pointer text-white p-2 px-6 flex items-center justify-center bg-gradient-to-r from-brand-primary to-brand-primaryDark hover:from-45% from-65% w-fit rounded-full transition-all duration-700
+  @apply cursor-pointer text-white p-2 px-6 flex items-center justify-center bg-gradient-to-r from-brand-primary to-brand-primaryDark hover:from-45% from-65% w-fit rounded-full transition-all duration-700 font-medium
 }
 
 
@@ -31,7 +31,7 @@ orange : #F69F1C */
   /* fix for Chrome */
   line-height: 1.5;
   font-weight: 300;
-  font-size: 1rem;
+  font-size: .9rem;
 
   /* color-scheme: light dark; */
 

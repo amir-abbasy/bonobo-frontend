@@ -26,7 +26,7 @@ function Index() {
 
 
           <div>
-            <Button name="Create SES" onClick={() => nav('/create-ses')} />
+            <Button name="Create SES" onClick={() => nav('/create-campaign')} />
           </div>
 
         </div>

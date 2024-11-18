@@ -1,0 +1,36 @@
+[
+    {
+        "name": "Configuration",
+        "path": "/configuration",
+        "icon": "",
+        "submneu": [
+            {
+                "name": "Mail Servers",
+                "path": "/mail-servers",
+                "icon": ""
+            }
+        ]
+    },
+    {
+        "name": "Maadan",
+        "path": "/profile",
+        "icon": "",
+        "submneu": [
+            {
+                "name": "Profile",
+                "path": "/profile",
+                "icon": ""
+            },
+            {
+                "name": "Account",
+                "path": "/profile-account",
+                "icon": ""
+            },
+            {
+                "name": "Logout",
+                "path": null,
+                "icon": ""
+            }
+        ]
+    }
+]

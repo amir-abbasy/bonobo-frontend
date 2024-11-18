@@ -1,0 +1,143 @@
+[
+    {
+      "campaign_name": "Campaign 1",
+      "status": "Scheduled",
+      "last_updated": "2024-11-14 18:39:52",
+      "type": "SMTP",
+      "open_rate": 76.13
+    },
+    {
+      "campaign_name": "Campaign 2",
+      "status": "Aborted",
+      "last_updated": "2024-11-17 18:39:52",
+      "type": "SMTP",
+      "open_rate": 0.08
+    },
+    {
+      "campaign_name": "Campaign 3",
+      "status": "Queued",
+      "last_updated": "2024-10-25 18:39:52",
+      "type": "SMTP",
+      "open_rate": 90.21
+    },
+    {
+      "campaign_name": "Campaign 4",
+      "status": "Processing",
+      "last_updated": "2024-10-23 18:39:52",
+      "type": "API",
+      "open_rate": 97.77
+    },
+    {
+      "campaign_name": "Campaign 5",
+      "status": "Scheduled",
+      "last_updated": "2024-11-18 18:39:52",
+      "type": "SMTP",
+      "open_rate": 69.57
+    },
+    {
+      "campaign_name": "Campaign 6",
+      "status": "Paused",
+      "last_updated": "2024-10-27 18:39:52",
+      "type": "API",
+      "open_rate": 30.48
+    },
+    {
+      "campaign_name": "Campaign 7",
+      "status": "Paused",
+      "last_updated": "2024-11-13 18:39:52",
+      "type": "API",
+      "open_rate": 94.44
+    },
+    {
+      "campaign_name": "Campaign 8",
+      "status": "Rescheduled",
+      "last_updated": "2024-11-09 18:39:52",
+      "type": "API",
+      "open_rate": 93.51
+    },
+    {
+      "campaign_name": "Campaign 9",
+      "status": "Draft",
+      "last_updated": "2024-10-23 18:39:52",
+      "type": "API",
+      "open_rate": 51.3
+    },
+    {
+      "campaign_name": "Campaign 10",
+      "status": "Queued",
+      "last_updated": "2024-11-07 18:39:52",
+      "type": "SMTP",
+      "open_rate": 85.09
+    },
+    {
+      "campaign_name": "Campaign 11",
+      "status": "Duplicate",
+      "last_updated": "2024-11-05 18:39:52",
+      "type": "SMTP",
+      "open_rate": 23.24
+    },
+    {
+      "campaign_name": "Campaign 12",
+      "status": "Finished",
+      "last_updated": "2024-11-16 18:39:52",
+      "type": "API",
+      "open_rate": 52.92
+    },
+    {
+      "campaign_name": "Campaign 13",
+      "status": "Processing",
+      "last_updated": "2024-10-30 18:39:52",
+      "type": "SMTP",
+      "open_rate": 37.41
+    },
+    {
+      "campaign_name": "Campaign 14",
+      "status": "Finished",
+      "last_updated": "2024-11-05 18:39:52",
+      "type": "SMTP",
+      "open_rate": 0.05
+    },
+    {
+      "campaign_name": "Campaign 15",
+      "status": "Rescheduled",
+      "last_updated": "2024-11-07 18:39:52",
+      "type": "API",
+      "open_rate": 45.43
+    },
+    {
+      "campaign_name": "Campaign 16",
+      "status": "Paused",
+      "last_updated": "2024-11-13 18:39:52",
+      "type": "API",
+      "open_rate": 11.31
+    },
+    {
+      "campaign_name": "Campaign 17",
+      "status": "Draft",
+      "last_updated": "2024-11-03 18:39:52",
+      "type": "API",
+      "open_rate": 66.34
+    },
+    {
+      "campaign_name": "Campaign 18",
+      "status": "Failed",
+      "last_updated": "2024-10-22 18:39:52",
+      "type": "SMTP",
+      "open_rate": 93.92
+    },
+    {
+      "campaign_name": "Campaign 19",
+      "status": "Scheduled",
+      "last_updated": "2024-10-30 18:39:52",
+      "type": "API",
+      "open_rate": 8.73
+    },
+    {
+      "campaign_name": "Campaign 20",
+      "status": "Aborted",
+      "last_updated": "2024-11-04 18:39:52",
+      "type": "SMTP",
+      "open_rate": 86.28
+    }
+  ]
+  

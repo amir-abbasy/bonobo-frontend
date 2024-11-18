@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { joiResolver } from '@hookform/resolvers/joi';
 import Joi from 'joi';
 import { twMerge } from 'tailwind-merge'
+import DropDown from './DropDown';
 
 
 // DynamicForm Component
@@ -33,7 +34,7 @@ const DynamicForm = ({ data, onSubmit, className, itemClassName, containerClass,
     };
 
     return (
-        <form onSubmit={handleSubmit(handleFormSubmit)} className={twMerge(`w-full flex justify-between flex-wrap max-w-lg gap-x-4 bg-white dark_:bg-black rounded-md ${className}`)}>
+        <form onSubmit={handleSubmit(handleFormSubmit)} className={twMerge(`w-full flex justify-between flex-wrap max-w-lg gap-x-4 dark_:bg-black rounded-md ${className}`)}>
             {data.map((field, index) => {
                 const { type, name, label, options, className, containerClass: f_containerClass, showLabel: f_showLabel, layout, ...rest } = field;
 
@@ -47,17 +48,23 @@ const DynamicForm = ({ data, onSubmit, className, itemClassName, containerClass,
 
                         {/* Render input based on type */}
                         {type === 'select' ? (
-                            <select
+                            <DropDown
                                 {...register(name)}
                                 {...rest}
-                                className={twMerge(`border bg-white border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 ${className}`)}
-                            >
-                                {options?.map((option, optIndex) => (
-                                    <option key={optIndex} value={option.value}>
-                                        {option.label}
-                                    </option>
-                                ))}
-                            </select>
+                                data={options}
+                            // className=""
+                            />
+                            // <select
+                            //     {...register(name)}
+                            //     {...rest}
+                            //     className={twMerge(`border bg-white border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 ${className}`)}
+                            // >
+                            //     {options?.map((option, optIndex) => (
+                            //         <option key={optIndex} value={option.value}>
+                            //             {option.label}
+                            //         </option>
+                            //     ))}
+                            // </select>
                         ) : type === 'textarea' ? (
                             <textarea
                                 {...register(name)}
@@ -89,7 +96,7 @@ const DynamicForm = ({ data, onSubmit, className, itemClassName, containerClass,
                                 type={type}
                                 {...register(name)}
                                 {...rest}
-                                className={twMerge(`w-full mt-auto  rounded-xl px-3 py-2 border border-gray-200  hover:ring-2 focus:border-white outline-brand-primary outline-0 focus:ring-2 placeholder:text-xs transition-all duration-300 ${className}`)}
+                                className={twMerge(`w-full my-8 rounded-xl px-3 py-2 outline-none border border-brand-background hover:border-brand-primary focus:border-brand-primary placeholder:text-xs transition-all duration-200 ${className}`)}
                             />
                         )}
 

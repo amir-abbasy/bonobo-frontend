@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { ArrawIcon, MoreIcon } from './Icons'
 
-function Select() {
+function Select({ options = [] }) {
     const [isOpen, setIsOpen] = useState(false);
 
     const wrapperRef = useRef(null);
@@ -36,24 +36,16 @@ function Select() {
             {isOpen && (
                 <div className="absolute right-0 z-10 mt-2 w-40 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5">
                     <div className="py-1">
-                        <a
-                            href="#"
-                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-brand-background"
-                        >
-                            Option 1
-                        </a>
-                        <a
-                            href="#"
-                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-brand-background"
-                        >
-                            Option 2
-                        </a>
-                        <a
-                            href="#"
-                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-brand-background"
-                        >
-                            Option 3
-                        </a>
+                        {options.map((option, idx) => {
+                            return <a
+                                href="#"
+                                className={`block font-normal px-4 py-2 text-sm  ${option.value == 'delete' ? 'text-red-400' : 'text-black'} hover:bg-brand-background`}
+                            >
+                                {option.name}
+                            </a>
+                        })}
+
+
                     </div>
                 </div>
             )}

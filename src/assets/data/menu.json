@@ -5,28 +5,46 @@
         "icon": ""
     },
     {
-        "name": "SMTP",
-        "path":"/smtp",
-        "icon": ""
-    },
-    {
-        "name": "Amazon SES",
-        "path":"/ses",
-        "icon": ""
-    },
-    {
-        "name": "Templates",
-        "path":"/templates",
-        "icon": ""
-    },
-    {
-        "name": "Contact List",
-        "path":"/contact",
-        "icon": ""
-    },
-    {
         "name": "Campaigns",
         "path":"/campaigns",
         "icon": ""
+    },
+    {
+        "name": "Autoresponder",
+        "path":"/autoresponder",
+        "icon": ""
+    },
+    {
+        "name": "Automation",
+        "path":"/automation",
+        "icon": ""
+    },
+    {
+        "name": "Audience",
+        "path":"/audience",
+        "icon": "",
+        "submneu":[
+            {
+                "name": "Lists",
+                "path":"/automation-lists",
+                "icon": ""
+            },
+            {
+                "name": "Segments",
+                "path":"/automation-segments",
+                "icon": ""
+            },
+            {
+                "name": "Webforms",
+                "path":"/automation-webforms",
+                "icon": ""
+            }
+        ]
+    },
+    {
+        "name": "Template Gallery",
+        "path":"/templates",
+        "icon": ""
     }
+   
 ]

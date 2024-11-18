@@ -1,22 +1,37 @@
 import React from 'react';
 import { useState } from 'react'
-import { Layout } from '../../components'
+import { Button, Layout } from '../../components'
 import { CalendarIcon, CallIcon, MessageIcon, UsersIcon } from '../../components/Icons'
 import LineChart from './LineChart';
 import StackedChart from './StackedChart';
 import { lineChartOption, lineChartNoAxisOption, generateRandomData } from '../../assets/data/chartData'
+import { useNavigate } from 'react-router-dom';
 
 
 
 
 function Index() {
   const [count, setCount] = useState(0)
-
+  const nav = useNavigate()
+  
   return (
     <Layout className='pt-8' >
 
 
-      <div className='bg-white flex justify-between rounded-3xl'>
+      <div className='flex justify-between  mb-6'>
+        <h1 className='font-bold text-2xl '>Dashboard</h1>
+        <div className='flex'>
+          <button className='mr-4 border border-gray-300 cursor-pointer text-black p-2 px-4 flex items-center justify-center hover:from-45% from-65% w-fit rounded-full transition-all duration-700 font-medium'>
+            <CalendarIcon w='20' h='20' className='mr-2' />
+            <p>Today</p>
+          </button>
+          <Button name='Create Campaign' onClick={() => nav('/create-campaign')} />
+        </div>
+      </div>
+
+
+
+      <div className='bg-white grid grid-cols-2 lg:grid-cols-4 gap-4 justify-between rounded-t-3xl '>
         {[{ name: 'Contacts', count: 8, change: 66, icon: 'call' },
         { name: 'Campaigns', count: 3, change: 166, icon: 'campaign' },
         { name: 'Subscribers', count: 56, change: 126, icon: 'users' },
@@ -36,7 +51,7 @@ function Index() {
           }
 
 
-          return <div className={`${i > 0 ? 'border-l ' : ''} flex-1 p-6 flex items-center justify-between`}>
+          return <div className={`${i > 0 ? 'border-l' : ''} border-b lg:border-b-0 flex-1 p-6 flex items-center justify-between`}>
             <div>
               <Icon w={40} h={40} className='strock-gray-500 opacity-20' />
               <div className='mt-2 flex items-center'>
@@ -45,23 +60,62 @@ function Index() {
               </div>
               <p className='font-bold text-2xl mt-4'>{card.count}</p>
             </div>
-            <div className='w-32 '>
+            <div className='hidden lg:hidden xl:block sm:block w-32'>
               <LineChart onlyLine={true} options={lineChartNoAxisOption} data={generateRandomData(7, 50, 100)} />
             </div>
           </div>
         })}
       </div>
 
-      <div className='flex gap-x-8'>
+
+
+      <div className='bg-white grid grid-cols-2 lg:grid-cols-4 gap-4 justify-between rounded-b-3xl border-t'>
+        {[{ name: 'Email Servers', count: 4, change: 66, icon: 'call' },
+        { name: 'Total Subscribers', count: 721, change: 166, icon: 'campaign' },
+        { name: 'Daily Sending Limit', count: 1200, change: 126, icon: 'users' },
+        { name: 'Unsubscribers', count: 2154, change: -36, icon: 'mail' }].map((card, i) => {
+
+          let Icon = CallIcon
+          switch (card.icon) {
+            case 'campaign':
+              Icon = CalendarIcon
+              break;
+            case 'users':
+              Icon = UsersIcon
+              break;
+            case 'mail':
+              Icon = MessageIcon
+              break;
+          }
+
+
+          return <div className={`${i > 0 ? 'border-l ' : ''} border-b lg:border-b-0 flex-1 p-6 flex items-center justify-between`}>
+            <div>
+              <Icon w={40} h={40} className='strock-gray-500 opacity-20' />
+              <div className='mt-2 flex items-center'>
+                <p className='font-medium text-gray-800'>{card.name}</p>
+                {card?.change && <span className='ml-2 bg-brand-primary text-xs font-bold rounded-full text-white px-2 p-1'>{card.change}%</span>}
+              </div>
+              <p className='font-bold text-2xl mt-4'>{card.count}</p>
+            </div>
+            <div className='hidden lg:hidden xl:block sm:block w-32'>
+              <LineChart onlyLine={true} options={lineChartNoAxisOption} data={generateRandomData(7, 50, 100)} />
+            </div>
+          </div>
+        })}
+      </div>
+
+
+      <div className='flex flex-col lg:flex-row gap-x-8'>
         <div className='flex-1'>
-          <h1 className='font-bold text-2xl mt-8 mb-4'>Sent Mail Analystics</h1>
+          <h1 className='font-medium text-xl mt-8 mb-4'>Sent Mail Analystics</h1>
           <div className='h-fit bg-white p-6 rounded-3xl'>
             <LineChart />
           </div>
         </div>
 
         <div className='flex-1'>
-          <h1 className='font-bold text-2xl mt-8 mb-4'>Stacked Bar Chart</h1>
+          <h1 className='font-medium text-xl mt-8 mb-4'>Stacked Bar Chart</h1>
           <div className='h-fit bg-white p-6 rounded-3xl'>
             <StackedChart />
           </div>
