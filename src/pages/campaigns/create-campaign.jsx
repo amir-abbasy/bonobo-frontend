@@ -1,28 +1,16 @@
 import React from 'react';
 import { useState } from 'react'
-import { Layout, DropDown, Button } from '../../components'
+import { Layout, DropDown, Button, Modal } from '../../components'
 import DynamicForm from '../../components/Form';
-import ses from '../../assets/Icons/ses.svg';
 
 import Joi from 'joi';
-
-
-
-
-//
-// 
-// 
-// 
-// 
-// 
-
 
 
 const formData = [
   {
     type: 'text',
-    name: 'SES Name',
-    placeholder: 'SES Name',
+    name: 'Campaign Name',
+    placeholder: 'Campaign Name',
     // label: 'SES Name',
     validation: Joi.string().min(3).max(30).required().messages({
       'string.empty': 'SES Name is required',
@@ -33,6 +21,17 @@ const formData = [
     className: "",
     containerClass: "",
     // showLabel: false
+  },
+  {
+    type: 'email',
+    name: 'Subject Line',
+    label: 'Subject Line',
+    placeholder: 'Subject Line',
+    validation: Joi.string().required().messages({
+      'string.empty': 'Subject Line',
+      // 'string.email': 'Subject Line must be a valid email address',
+    }),
+    layout: 'row',
   },
   {
     type: 'select',
@@ -47,74 +46,18 @@ const formData = [
     }),
   },
   {
-    type: 'email',
-    name: 'Access Key',
-    label: 'Access Key',
-    placeholder: 'SES Name',
-
-    validation: Joi.string().email({ tlds: { allow: false } }).required().messages({
-      'string.empty': 'Email is required',
-      'string.email': 'Email must be a valid email address',
-    }),
-    layout: 'row',
-  },
-  {
-    type: 'text',
-    name: 'Secret Key',
-    label: 'Secret Key',
-    placeholder: 'SES Name',
-    validation: Joi.string().min(6).required().messages({
-      'string.empty': 'Password is required',
-      'string.min': 'Password must be at least 6 characters long',
-    }),
-    // layout: 'row',
-  },
-  {
-    type: 'text',
-    name: 'From Name',
-    label: 'From Name',
-    placeholder: 'SES Name',
-    validation: Joi.number().min(0).max(100).messages({
-      'number.base': 'Age must be a number',
-      'number.min': 'Age must be at least 0',
-      'number.max': 'Age cannot be more than 100',
+    type: 'select',
+    name: 'Sender name ',
+    label: 'Sender name',
+    placeholder: 'Sender name',
+    options: [
+      { value: 'amirabbasyk@gmail.com ', title: 'amirabbasyk@gmail.com' },
+      { value: 'maadanabbasy@gmail.com', title: 'maadanabbasy@gmail.com' },
+    ],
+    validation: Joi.string().required().messages({
+      'string.empty': 'Sender is required',
     }),
   },
-  {
-    type: 'email',
-    name: 'From Email',
-    label: 'From Email',
-    placeholder: 'SES Name',
-    validation: Joi.string().email({ tlds: { allow: false } }).required().messages({
-      'date.base': 'Email is required',
-      'string.email': 'Email must be a valid email address',
-    }),
-  },
-  {
-    type: 'text',
-    name: 'Sending Rate',
-    label: 'Sending Rate',
-    placeholder: 'SES Name',
-    validation: Joi.number().min(0).max(100).messages({
-      'number.base': 'Age must be a number',
-      'number.min': 'Age must be at least 0',
-      'number.max': 'Age cannot be more than 100',
-    }),
-
-  },
-  {
-    type: 'text',
-    name: 'SMTP Limit',
-    label: 'SMTP Limit',
-    placeholder: 'SES Name',
-    validation: Joi.number().min(0).max(100).messages({
-      'number.base': 'Age must be a number',
-      'number.min': 'Age must be at least 0',
-      'number.max': 'Age cannot be more than 100',
-    }),
-
-  },
-
 ];
 
 
@@ -123,6 +66,10 @@ const sections = ['Create campaign', 'Choose contacts', 'Preview campaign']
 function Index() {
   const [options, setOpstion] = useState({ value: 'value', data: [{ title: 'Amir', value: 'amir' }, { title: 'Amir2', value: 'amir2' }] })
   const [activeSection, setActiveSection] = useState('Create campaign') // choose_contacts, preview_campaign
+  const [showModal, setShowModal] = useState(false)
+
+
+
   // Submit Handler
   const handleFormSubmit = (formValues) => {
     console.log('Form Data:', formValues);
@@ -154,7 +101,7 @@ function Index() {
             // containerClass="w-full"
             // className="space-between"
             submitClassName="button-primary px-8"
-            submitName="Save SES Details"
+            submitName="Save & Continue"
           />
 
         </div>
@@ -166,13 +113,23 @@ function Index() {
             <p className='font-bold'>From <span className='font-normal ml-2'>Cordispatch Software business@cordispatch.com</span></p>
             <p className='font-bold'>Preview text <span className='font-normal ml-2'>asdasd</span></p>
           </div>
-          <img src="https://app2.mailercloud.com/img/email-content.806ec997.svg" className='m-auto w-64 mt-auto' />
+          <div className='flex flex-col justify-center items-center'>
+            <img src="https://app2.mailercloud.com/img/email-content.806ec997.svg" className='m-auto w-64 mt-auto' />
+            <h5 className='font-bold text-xl my-4'>Add Email Content</h5>
+            <p className=''>Create Engaging Email Content with MailerCloud's</p>
+            <p> Templates & Editor - Get Started!</p>
+            <Button className="mt-4 p-3 px-8" name='Choose email template'
+              onClick={_ => setShowModal(true)}
+            />
+          </div>
         </div>
 
 
 
       </div>
-    </Layout>
+
+      <Modal visible={showModal} onClose={() => setShowModal(false)} />
+    </Layout >
   )
 }
 

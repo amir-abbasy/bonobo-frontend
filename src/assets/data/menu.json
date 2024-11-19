@@ -1,50 +1,54 @@
 [
     {
         "name": "Dashboard",
-        "path":"/",
+        "path": "/",
         "icon": ""
     },
     {
         "name": "Campaigns",
-        "path":"/campaigns",
+        "path": "/campaigns",
         "icon": ""
     },
     {
         "name": "Autoresponder",
-        "path":"/autoresponder",
+        "path": "/autoresponder",
         "icon": ""
     },
     {
         "name": "Automation",
-        "path":"/automation",
+        "path": "/automation",
         "icon": ""
     },
     {
         "name": "Audience",
-        "path":"/audience",
+        "path": "/audience",
         "icon": "",
-        "submneu":[
+        "submneu": [
             {
                 "name": "Lists",
-                "path":"/automation-lists",
+                "path": "/audience-lists",
                 "icon": ""
             },
             {
                 "name": "Segments",
-                "path":"/automation-segments",
+                "path": "/audience-segments",
                 "icon": ""
             },
             {
                 "name": "Webforms",
-                "path":"/automation-webforms",
+                "path": "/audience-webforms",
+                "icon": ""
+            },
+            {
+                "name": "Summary",
+                "path": "/audience-summary",
                 "icon": ""
             }
         ]
     },
     {
         "name": "Template Gallery",
-        "path":"/templates",
+        "path": "/templates",
         "icon": ""
     }
-   
 ]

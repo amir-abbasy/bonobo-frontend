@@ -103,3 +103,10 @@ export const generateRandomData = (numPoints, min, max) => {
     }
     return data;
   };
+
+
+
+
+
+
+  export const pieChart = {}

@@ -4,6 +4,10 @@ import Dashboard from "./pages/dashboard";
 import Campaigns from "./pages/campaigns";
 import CreateCampaign from "./pages/campaigns/create-campaign";
 
+import Audience from "./pages/audience";
+import AudienceAnalytics from "./pages/audience/analytics";
+
+
 import Smtp from "./pages/smtp";
 import SES from "./pages/ses";
 import CreateSES from "./pages/ses/create-ses";
@@ -19,6 +23,12 @@ function App() {
         <Route path="/" element={<Dashboard />} />
         <Route path="/campaigns" element={<Campaigns />} />
         <Route path="/create-campaign" element={<CreateCampaign />} />
+
+        <Route path="/audience-lists" element={<Audience />} />
+        <Route path="/audience-segments" element={<Audience />} />
+        <Route path="/audience-webforms" element={<Audience />} />
+        <Route path="/audience-summary" element={<Audience />} />
+        <Route path="/audience-analytics" element={<AudienceAnalytics />} />
 
         <Route path="/autoresponder" element={<Smtp />} />
         <Route path="/automation" element={<SES />} />

@@ -49,7 +49,7 @@ const DynamicForm = ({ data, onSubmit, className, itemClassName, containerClass,
                         {/* Render input based on type */}
                         {type === 'select' ? (
                             <DropDown
-                                {...register(name)}
+                                // {...register(name)}
                                 {...rest}
                                 data={options}
                             // className=""

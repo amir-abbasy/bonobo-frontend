@@ -109,10 +109,10 @@ function Index() {
                 </p>
               </div>
 
-              <div className="table-col">
+              {/* <div className="table-col">
                 <p className="text-sm font-light text-gray-400">Open rate</p>
                 <p className='font-normal'>{item.open_rate}</p>
-              </div>
+              </div> */}
 
               <div className=" flex items-center w-full justify-end min-w-64">
                 <button className='px-6 p-2 -white hover:text-brand-primary rounded-full text-sm  bg-brand-background transition-all duration-200'>{key % 3 == 0 ? "Statistics" : "View email"}</button>

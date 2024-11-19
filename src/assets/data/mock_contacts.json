@@ -1,0 +1,122 @@
+[
+  {
+    "email_id": "user1@example.com",
+    "rating": 4.5,
+    "name": "User 1",
+    "status": "Active"
+  },
+  {
+    "email_id": "user2@example.com",
+    "rating": 3.8,
+    "name": "User 2",
+    "status": "Inactive"
+  },
+  {
+    "email_id": "user3@example.com",
+    "rating": 4.2,
+    "name": "User 3",
+    "status": "Pending"
+  },
+  {
+    "email_id": "user4@example.com",
+    "rating": 2.9,
+    "name": "User 4",
+    "status": "Banned"
+  },
+  {
+    "email_id": "user5@example.com",
+    "rating": 5.0,
+    "name": "User 5",
+    "status": "Active"
+  },
+  {
+    "email_id": "user6@example.com",
+    "rating": 3.5,
+    "name": "User 6",
+    "status": "Inactive"
+  },
+  {
+    "email_id": "user7@example.com",
+    "rating": 4.7,
+    "name": "User 7",
+    "status": "Pending"
+  },
+  {
+    "email_id": "user8@example.com",
+    "rating": 1.9,
+    "name": "User 8",
+    "status": "Banned"
+  },
+  {
+    "email_id": "user9@example.com",
+    "rating": 3.0,
+    "name": "User 9",
+    "status": "Active"
+  },
+  {
+    "email_id": "user10@example.com",
+    "rating": 4.0,
+    "name": "User 10",
+    "status": "Inactive"
+  },
+  {
+    "email_id": "user11@example.com",
+    "rating": 4.6,
+    "name": "User 11",
+    "status": "Pending"
+  },
+  {
+    "email_id": "user12@example.com",
+    "rating": 2.8,
+    "name": "User 12",
+    "status": "Banned"
+  },
+  {
+    "email_id": "user13@example.com",
+    "rating": 4.9,
+    "name": "User 13",
+    "status": "Active"
+  },
+  {
+    "email_id": "user14@example.com",
+    "rating": 3.7,
+    "name": "User 14",
+    "status": "Inactive"
+  },
+  {
+    "email_id": "user15@example.com",
+    "rating": 2.5,
+    "name": "User 15",
+    "status": "Banned"
+  },
+  {
+    "email_id": "user16@example.com",
+    "rating": 4.8,
+    "name": "User 16",
+    "status": "Active"
+  },
+  {
+    "email_id": "user17@example.com",
+    "rating": 4.3,
+    "name": "User 17",
+    "status": "Pending"
+  },
+  {
+    "email_id": "user18@example.com",
+    "rating": 3.2,
+    "name": "User 18",
+    "status": "Inactive"
+  },
+  {
+    "email_id": "user19@example.com",
+    "rating": 4.1,
+    "name": "User 19",
+    "status": "Pending"
+  },
+  {
+    "email_id": "user20@example.com",
+    "rating": 2.4,
+    "name": "User 20",
+    "status": "Banned"
+  }
+]
