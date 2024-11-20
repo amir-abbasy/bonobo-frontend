@@ -7,6 +7,10 @@ import CreateCampaign from "./pages/campaigns/create-campaign";
 import Audience from "./pages/audience";
 import AudienceAnalytics from "./pages/audience/analytics";
 
+import Automation from "./pages/automation";
+import AddServer from "./pages/automation/add-server.jsx";
+import Profile from "./pages/profile";
+
 
 import Smtp from "./pages/smtp";
 import SES from "./pages/ses";
@@ -20,7 +24,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Dashboard />} />
+        <Route path="/" element={<Automation />} />
         <Route path="/campaigns" element={<Campaigns />} />
         <Route path="/create-campaign" element={<CreateCampaign />} />
 
@@ -31,9 +35,10 @@ function App() {
         <Route path="/audience-analytics" element={<AudienceAnalytics />} />
 
         <Route path="/autoresponder" element={<Smtp />} />
-        <Route path="/automation" element={<SES />} />
+        <Route path="/automation" element={<Automation />} />
+        <Route path="/add-server/:type" element={<AddServer />} />
         <Route path="/templates" element={<SES />} />
-        <Route path="/contact" element={<SES />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
     </Router>
   );

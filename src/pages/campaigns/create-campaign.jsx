@@ -118,7 +118,7 @@ function Index() {
             <h5 className='font-bold text-xl my-4'>Add Email Content</h5>
             <p className=''>Create Engaging Email Content with MailerCloud's</p>
             <p> Templates & Editor - Get Started!</p>
-            <Button className="mt-4 p-3 px-8" name='Choose email template'
+            <Button className="mt-4 p-3 px-8 text-white" name='Choose email template'
               onClick={_ => setShowModal(true)}
             />
           </div>
@@ -128,7 +128,32 @@ function Index() {
 
       </div>
 
-      <Modal visible={showModal} onClose={() => setShowModal(false)} />
+      <Modal visible={showModal} onClose={() => setShowModal(false)} >
+        <section className='p-8 '>
+          <div class="text-center">
+            <h3 className='text-2xl font-normal'> Choose Your Template, Craft Your Creation </h3>
+            <p className='my-4 text-slate-800'> Choose the perfect option to create campaign that generate more leads, attract more <br />subscribers, and make more sales.</p>
+          </div>
+
+          <div className='flex text-center justify-center  gap-x-8 px-32'>
+            {[{ name: 'Template Gallery', desc: 'Choose from ready to use templates', icon: 'https://app2.mailercloud.com/img/template-gallery.455c3d23.svg' },
+            { name: 'Richtext Editor', desc: 'Create simple emails Effortlessly', icon: 'https://app2.mailercloud.com/img/richtext-editor.2b2c95c8.svg' },
+            { name: 'Drag & Drop Builder', desc: 'Create a campaign by simple drag and drop', icon: 'https://app2.mailercloud.com/img/drag-drop-builder.5dc38ce3.svg' }].map((option, key) => {
+              return <div className='flex flex-col items-center cursor-pointer '>
+                <div className='my-4 border rounded-3xl p-10 size-44 hover:bg-slate-100' >
+                  <img src={option.icon} />
+                </div>
+                <p className='font-semibold text-lg'>{option.name}</p>
+                <p className='text-sm text-slate-800 w-44'>{option.desc}</p>
+              </div>
+            })}
+          </div>
+
+          <Button className="bg-none border text-slate-600 hover:bg-slate-200" name="Cancel" onClick={() => setShowModal(false)} />
+        </section>
+      </Modal>
+
+      
     </Layout >
   )
 }

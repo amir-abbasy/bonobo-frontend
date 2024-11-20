@@ -1,0 +1,38 @@
+[
+    {
+        "name": "Configuration 1",
+        "path": "/configuration",
+        "icon": "",
+        "submneu": [
+            {
+                "name": "Mail Servers",
+                "path": "/mail-servers",
+                "icon": ""
+            }
+        ]
+    },
+    {
+        "name": "Configuration 2",
+        "path": "/configuration",
+        "icon": "",
+        "submneu": [
+            {
+                "name": "Mail Servers",
+                "path": "/mail-servers",
+                "icon": ""
+            }
+        ]
+    },
+    {
+        "name": "Configuration 3",
+        "path": "/configuration",
+        "icon": "",
+        "submneu": [
+            {
+                "name": "Mail Servers",
+                "path": "/mail-servers",
+                "icon": ""
+            }
+        ]
+    }
+]

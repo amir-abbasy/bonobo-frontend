@@ -13,12 +13,12 @@ import { useNavigate } from 'react-router-dom';
 function Index() {
   const [count, setCount] = useState(0)
   const nav = useNavigate()
-  
+
   return (
-    <Layout className='pt-8' >
+    <Layout className='pt-8 px-4 sm:px-4 ' >
 
 
-      <div className='flex justify-between  mb-6'>
+      <div className='sm:flex justify-between  mb-6'>
         <h1 className='font-bold text-2xl '>Dashboard</h1>
         <div className='flex'>
           <button className='mr-4 border border-gray-300 cursor-pointer text-black p-2 px-4 flex items-center justify-center hover:from-45% from-65% w-fit rounded-full transition-all duration-700 font-medium'>

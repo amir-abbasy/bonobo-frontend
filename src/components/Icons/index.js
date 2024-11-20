@@ -18,4 +18,6 @@ export { default as UsersIcon } from './UsersIcon';
 export { default as MoreIcon } from './MoreIcon';
 export { default as FilterIcon } from './FilterIcon';
 export { default as SearchIcon } from './SearchIcon';
+export { default as CloseIcon } from './CloseIcon';
+export { default as StarIcon } from './StarIcon';
 

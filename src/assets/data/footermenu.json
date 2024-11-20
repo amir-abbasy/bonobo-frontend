@@ -6,7 +6,12 @@
         "submneu": [
             {
                 "name": "Mail Servers",
-                "path": "/mail-servers",
+                "path": "/profile",
+                "icon": ""
+            },
+            {
+                "name": "Email Verification",
+                "path": "/profile",
                 "icon": ""
             }
         ]
@@ -23,12 +28,17 @@
             },
             {
                 "name": "Account",
-                "path": "/profile-account",
+                "path": "/profile",
                 "icon": ""
             },
             {
-                "name": "Logout",
-                "path": null,
+                "name": "Users",
+                "path": "/profile",
+                "icon": ""
+            },
+            {
+                "name": "Billing",
+                "path": "/profile",
                 "icon": ""
             }
         ]

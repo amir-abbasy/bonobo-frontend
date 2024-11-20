@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { Layout, Table, TableSkelton, Button, DropDown, Select } from '../../components'
-import { FilterIcon, SearchIcon } from '../../components/Icons'
+import { FilterIcon, SearchIcon, StarIcon } from '../../components/Icons'
 import mock_contacts from '../../assets/data/mock_contacts.json'
 
 
@@ -66,9 +66,9 @@ function Contacts() {
 
                         <div className="flex-1">
                             <p className="text-sm font-light text-gray-400">Rating</p>
-                            <p className='max-w-40 font-normal'>
-                                {item.rating}
-                            </p>
+                            <div className='max-w-40 font-normal flex'>
+                                {new Array(5).fill("*").map((rate, idx) => <StarIcon key={idx} className='mr-1' color={Math.round(item.rating) > idx ? 'orange' : '#999'} w={15} h={15} />)}
+                            </div>
                         </div>
 
                         <div className="flex-1">
