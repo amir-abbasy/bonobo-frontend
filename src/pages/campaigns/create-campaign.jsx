@@ -76,12 +76,12 @@ function Index() {
   };
 
   return (
-    <Layout className='pt-8' >
+    <Layout className='pt-8 px-2 sm:px-0 ' >
       <div className='flex items-center'>
         <h1 className='font-bold text-2xl my-4'>Create campaign</h1>
       </div>
 
-      <div className='flex w-full items-center justify-center text-center gap-x-4 mb-8'>
+      <div className='flex w-full items-center justify-center text-center sm:gap-x-4 mb-8'>
         {sections.map((section, key) => {
           return <div className='flex items-center cursor-pointer' key={key}>
             {key > 0 && <div className={`h-[1px] w-12  ${section == activeSection ? 'bg-brand-primary' : 'bg-gray-300'} `} />}
@@ -91,7 +91,7 @@ function Index() {
         })}
       </div>
 
-      <div className='flex justify-between'>
+      <div className='flex flex-col sm:flex-row justify-between'>
         <div className='bg-white w-fit rounded-3xl p-6'>
           <DynamicForm
             data={formData}
@@ -113,7 +113,7 @@ function Index() {
             <p className='font-bold'>From <span className='font-normal ml-2'>Cordispatch Software business@cordispatch.com</span></p>
             <p className='font-bold'>Preview text <span className='font-normal ml-2'>asdasd</span></p>
           </div>
-          <div className='flex flex-col justify-center items-center'>
+          <div className='flex flex-col justify-center items-center my-16'>
             <img src="https://app2.mailercloud.com/img/email-content.806ec997.svg" className='m-auto w-64 mt-auto' />
             <h5 className='font-bold text-xl my-4'>Add Email Content</h5>
             <p className=''>Create Engaging Email Content with MailerCloud's</p>
@@ -135,7 +135,7 @@ function Index() {
             <p className='my-4 text-slate-800'> Choose the perfect option to create campaign that generate more leads, attract more <br />subscribers, and make more sales.</p>
           </div>
 
-          <div className='flex text-center justify-center  gap-x-8 px-32'>
+          <div className='flex flex-col sm:flex-row text-center justify-center  gap-x-8 px-4 sm:px-32'>
             {[{ name: 'Template Gallery', desc: 'Choose from ready to use templates', icon: 'https://app2.mailercloud.com/img/template-gallery.455c3d23.svg' },
             { name: 'Richtext Editor', desc: 'Create simple emails Effortlessly', icon: 'https://app2.mailercloud.com/img/richtext-editor.2b2c95c8.svg' },
             { name: 'Drag & Drop Builder', desc: 'Create a campaign by simple drag and drop', icon: 'https://app2.mailercloud.com/img/drag-drop-builder.5dc38ce3.svg' }].map((option, key) => {
@@ -153,7 +153,7 @@ function Index() {
         </section>
       </Modal>
 
-      
+
     </Layout >
   )
 }

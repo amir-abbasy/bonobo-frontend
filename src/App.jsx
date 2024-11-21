@@ -24,7 +24,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Automation />} />
+        <Route path="/" element={<Dashboard />} />
         <Route path="/campaigns" element={<Campaigns />} />
         <Route path="/create-campaign" element={<CreateCampaign />} />
 

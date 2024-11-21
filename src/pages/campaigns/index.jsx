@@ -16,9 +16,9 @@ const select_options = [{ name: "View Email", value: "view_email" },
 
 
 
-function SearchInput() {
+function SearchInput({className}) {
   return (
-    <div className="relative w-full max-w-sm">
+    <div className="relative sm:max-w-sm  ">
 
       {/* Input Field */}
       <input
@@ -50,20 +50,23 @@ function Index() {
   return (
     <Layout>
       <div>
+      <h1 className='sm:hidden font-bold text-2xl pt-6'>Campaigns</h1>
 
         {/* HEADER */}
-        <div className='h-24 flex items-center justify-between'>
-          <h1 className='font-bold text-2xl'>Campaigns</h1>
+        <div className='sm:h-24 flex items-center justify-between  '>
+          <h1 className='hidden sm:block font-bold text-2xl'>Campaigns</h1>
 
-          <div className='flex'>
+          <div className='flex flex-col sm:flex-row my-4 w-full sm:w-auto'>
             <div>
-              <SearchInput />
+              <SearchInput className="w-full" />
             </div>
-            <button className='mx-4 hover:ring-1 hover:ring-brand-primary border-gray-300 cursor-pointer bg-white text-black px-3 p-2 flex items-center justify-center hover:from-45% from-65% w-fit rounded-full font-medium'>
-              <FilterIcon w='20' h='20' className='' />
-            </button>
+            <div className='flex'>
+              <button className='mx-4 hover:ring-1 hover:ring-brand-primary border-gray-300 cursor-pointer bg-white text-black px-3 p-2 flex items-center justify-center hover:from-45% from-65% w-fit rounded-full font-medium'>
+                <FilterIcon w='20' h='20' className='' />
+              </button>
 
-            <Button name="Create Campaign" onClick={() => nav('/create-campaign')} />
+              <Button name="Create Campaign" onClick={() => nav('/create-campaign')} />
+            </div>
           </div>
         </div>
 

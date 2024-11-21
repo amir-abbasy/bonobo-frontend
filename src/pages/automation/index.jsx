@@ -54,7 +54,7 @@ function Index() {
 
         {/* HEADER */}
         <div className='h-24 flex items-center justify-between'>
-          <h1 className='font-bold text-2xl'>Campaigns</h1>
+          <h1 className='font-bold text-2xl'>Automation</h1>
 
           <div className='flex'>
             <div>

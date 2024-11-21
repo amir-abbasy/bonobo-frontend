@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import menu from '../assets/data/menu.json'
 import footermenu from '../assets/data/footermenu.json'
 import configmenu from '../assets/data/configmenu.json'
+import { useStore } from '../utils/store'
 
 const primary = '#4579ff'
 
@@ -47,11 +48,12 @@ const getIcon = (path) => {
 }
 
 function Drawer() {
-    const [isOpen, setIsOpen] = useState(1);
+    const [isOpen, setIsOpen] = useState(false);
     const [isOpenSubMenu, setIsOpenSubMenu] = useState(false);
     const [isOpenSubMenu2, setIsOpenSubMenu2] = useState(false);
-    const [activeMenu, setActiveMenu] = useState('/');
     const [configMenu, setConfigMenu] = useState();
+
+    const {activeMenu, swichMenu} = useStore()
 
 
     return (
@@ -61,7 +63,7 @@ function Drawer() {
                 {isOpen ? <CloseIcon className='sm:hidden mr-6' onClick={() => setIsOpen(!isOpen)} /> : <AppIcon className='sm:hidden mr-6' w={30} h={30} onClick={() => setIsOpen(true)} />}
             </div>
 
-            <div className={`${isOpen ? 'mt-16 ' : 'hidden'}  sm:block w-full fixed left-0 top-0 bottom-0 sm:left-8 sm:top-8 sm:bottom-8 sm:rounded-3xl z-10 bg-white/90 sm:hover:bg-white/50 sm:w-16 drawer-group sm:hover:w-64 transition-all duration-200 backdrop-blur-lg overflow-hidden hover:drop-shadow-2xl`}>
+            <div className={`${isOpen ? 'mt-16' : 'hidden'}  sm:block w-full fixed left-0 top-0 bottom-0 sm:left-8 sm:top-8 sm:bottom-8 sm:rounded-3xl z-10 bg-white/90 sm:hover:bg-white/50 sm:w-16 drawer-group sm:hover:w-64 transition-all duration-200 backdrop-blur-lg overflow-hidden hover:drop-shadow-2xl`}>
                 <nav className="flex flex-col h-full py-4 ">
                     <div className='hidden h-20 sm:flex items-center justify-between '>
                         <img src="./logo.svg" className='hidden w-12 sm:inline-block drawer-group-hover:hidden ml-2' />
@@ -75,7 +77,7 @@ function Drawer() {
 
                             return <li key={key}
                                 onClick={() => {
-                                    setActiveMenu(page.path)
+                                    swichMenu(page.path)
                                     if (!hasSubmenu) {
                                         setIsOpenSubMenu(!isOpenSubMenu)
                                         return
@@ -119,7 +121,7 @@ function Drawer() {
                                         return
                                     }
                                     setIsOpenSubMenu2(!isOpenSubMenu2)
-                                    setActiveMenu(page.name)
+                                    swichMenu(page.name)
                                 }}
                             ><Link to={hasSubmenu ? null : page.path}>
                                     <div className={`icon-group flex  ${activeMenu == page.name ? 'py-2' : ''}`}>
@@ -167,7 +169,7 @@ function Drawer() {
                                     return
                                 }
                                 setIsOpenSubMenu2(!isOpenSubMenu2)
-                                setActiveMenu(page.name)
+                                swichMenu(page.name)
                             }}
                         ><Link to={hasSubmenu ? null : page.path}>
                                 <div className={`icon-group flex `}>

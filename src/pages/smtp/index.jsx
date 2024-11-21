@@ -176,10 +176,10 @@ function Index() {
   };
   return (
     <Layout className='pt-8'>
-      <h1 className='font-bold text-2xl mb-4'>SMTP</h1>
+      <h1 className='font-bold text-2xl mb-4'>Autoresponder</h1>
 
       <div className='bg-white rounded-3xl p-8'>
-          <DropDown
+        {/*   <DropDown
             // title="Chhose crypto token"
             data={options.data}
             value={options.value}
@@ -192,7 +192,7 @@ function Index() {
             classNameContainer="mt-4 "
           />
 
-        <Button className={'mb-12'} />
+        <Button className={'mb-12'} /> */}
 
         <DynamicForm
           data={formData}

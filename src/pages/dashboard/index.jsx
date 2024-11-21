@@ -51,7 +51,7 @@ function Index() {
           }
 
 
-          return <div className={`${i > 0 ? 'border-l' : ''} border-b lg:border-b-0 flex-1 p-6 flex items-center justify-between`}>
+          return <div key={'card_' + i} className={`${i > 0 ? 'border-l' : ''} border-b lg:border-b-0 flex-1 p-6 flex items-center justify-between`}>
             <div>
               <Icon w={40} h={40} className='strock-gray-500 opacity-20' />
               <div className='mt-2 flex items-center'>
@@ -89,7 +89,7 @@ function Index() {
           }
 
 
-          return <div className={`${i > 0 ? 'border-l ' : ''} border-b lg:border-b-0 flex-1 p-6 flex items-center justify-between`}>
+          return <div key={'card__'+i} className={`${i > 0 ? 'border-l ' : ''} border-b lg:border-b-0 flex-1 p-6 flex items-center justify-between`}>
             <div>
               <Icon w={40} h={40} className='strock-gray-500 opacity-20' />
               <div className='mt-2 flex items-center'>
