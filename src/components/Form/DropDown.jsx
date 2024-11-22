@@ -17,6 +17,7 @@ import { ArrawIcon } from '../Icons'
 
 
 const DropDown = ({
+  input,
   title,
   data,
   className,
@@ -66,7 +67,7 @@ const DropDown = ({
     {picker ? <div onClick={() => !disabled && setOpen(!isOpen)}>{picker?.()}</div> :
       <>
         {title && <p className={ClassNameTitle}>{title}</p>}
-        <button className={twMerge(`flex justify-between items-center rounded-xl px-3 py-2 outline-none border border-brand-background hover:border-brand-primary focus:border-brand-primary w-full ${className}`)}
+        <div className={twMerge(`flex justify-between items-center rounded-xl px-3 py-2 outline-none border border-brand-background hover:border-brand-primary focus:border-brand-primary w-full ${className}`)}
           onClick={() => !disabled && setOpen(!isOpen)}>
           <div className="flex gap-1">
 
@@ -76,8 +77,8 @@ const DropDown = ({
             />}
             {!noLabel && <p className="mr-2">{data?.find((item) => item.value == value)?.title ?? placeholder}</p>}
           </div>
-          <ArrawIcon className={`${isOpen ? '-rotate-90' : 'rotate-90'} transition-all duration-300`} />
-        </button>
+          <ArrawIcon className={`${isOpen ? '-rotate-90' : 'rotate-90'} transition-all duration-300`} w={20} h={20} />
+        </div>
       </>
     }
 
@@ -91,6 +92,7 @@ const DropDown = ({
         return <a
           className={`drop-down-child px-4 py-2 text-sm flex  hover:bg-[#f8f9fa] justify-between items-center cursor-pointer ${value == key ? 'bg-[#9A718B20]' : 'border-b border-[#9A718B20]'}`} role="menuitem"
           onClick={() => {
+            input.onChange(item.value)
             onSelect(item.value)
             setOpen(false)
           }}
@@ -99,7 +101,7 @@ const DropDown = ({
             animationDelay: `${key * 0.05}s`
           }}
         >
-          {item.value == value && <span className='text-2xl text-primary absolute left-2'>•</span>}
+          {item.value == value && <span className='text-base text-primary absolute left-[4px]'>•</span>}
           <div className='flex items-center'>
             {item?.icon && <img
               className="rounded-2xl w-6 h-6 mx-2"

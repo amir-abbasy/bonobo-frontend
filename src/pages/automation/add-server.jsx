@@ -33,7 +33,7 @@ const formDataAPI = [
       'string.empty': 'Email is required',
       'string.email': 'Email must be a valid email address',
     }),
-    layout: 'row',
+    // layout: 'row',
   },
   {
     type: 'text',
@@ -132,7 +132,7 @@ const formDataSMTP = [
       'string.empty': 'SMTP From Email  is required',
       'string.email': 'SMTP From Email  must be a valid email address',
     }),
-    layout: 'row',
+    // layout: 'row',
   },
   {
     type: 'text',
@@ -206,8 +206,6 @@ const formDataSMTP = [
     }),
 
   },
-
-
   {
     type: 'select',
     name: 'SMTP Protocol',
@@ -221,6 +219,19 @@ const formDataSMTP = [
     validation: Joi.string().required().messages({
       'string.empty': 'Sender is required',
     }),
+    render: (field) => {
+      return <div className='sm:w-[46%]'>
+        <label className={`text-gray-600 font-medium text-sm`}>{field.name}</label>
+        <DropDown input={field} data={field.options}
+          onSelect={_ => {
+            // console.log({ _ });
+          }}
+          value={field.value}
+          classNameContainer="w-full"
+        />
+        <p className='text-red-500 font-normal text-xs mt-1'>{field.error?.message}</p>
+      </div>
+    },
   },
 
 
@@ -253,7 +264,8 @@ function Index() {
             onSubmit={handleFormSubmit}
             // itemClassName="border-red-400 bg-brand-background "
             // label={false}
-            // containerClass="w-full"
+            className="flex w-full p-8 rounded-3xl justify-between"
+            containerClass="sm:w-[46%]"
             // className="space-between"
             submitClassName="button-primary px-8"
             submitName="Save & Continue"

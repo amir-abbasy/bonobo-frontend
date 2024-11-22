@@ -35,8 +35,8 @@ const formData = [
   },
   {
     type: 'select',
-    name: 'type ',
-    label: 'Type ',
+    name: 'Type',
+    label: 'Type',
     options: [
       { value: 'SMTP ', title: 'SMTP' },
       { value: 'API', title: 'API' },
@@ -44,6 +44,18 @@ const formData = [
     validation: Joi.string().required().messages({
       'string.empty': 'Type is required',
     }),
+    render: (field) => {
+      return <div className='w-full'>
+        <label className={`text-gray-600 font-medium  text-sm`}>{field.name}</label>
+        <DropDown input={field} data={field.options} onSelect={_ => {
+          // console.log({ _ });
+        }}
+          value={field.value}
+        // classNameContainer="w-full"
+        />
+        <p className='text-red-500 font-normal text-xs mt-1'>{field.error?.message}</p>
+      </div>
+    },
   },
   {
     type: 'select',
@@ -57,6 +69,18 @@ const formData = [
     validation: Joi.string().required().messages({
       'string.empty': 'Sender is required',
     }),
+    render: (field) => {
+      return <div className='w-full mt-6'>
+        <label className={`text-gray-600 font-medium  text-sm`}>{field.name}</label>
+        <DropDown input={field} data={field.options} onSelect={_ => {
+          // console.log({ _ });
+        }}
+          value={field.value}
+        // classNameContainer="w-full"
+        />
+        <p className='text-red-500 font-normal text-xs mt-1'>{field.error?.message}</p>
+      </div>
+    },
   },
 ];
 
@@ -92,14 +116,13 @@ function Index() {
       </div>
 
       <div className='flex flex-col sm:flex-row justify-between'>
-        <div className='bg-white w-fit rounded-3xl p-6'>
+        <div className='bg-white w-full rounded-3xl p-6 sm:flex-[.5]'>
           <DynamicForm
             data={formData}
             onSubmit={handleFormSubmit}
             // itemClassName="border-red-400 bg-brand-background "
             // label={false}
-            // containerClass="w-full"
-            // className="space-between"
+            className="w-full"
             submitClassName="button-primary px-8"
             submitName="Save & Continue"
           />
