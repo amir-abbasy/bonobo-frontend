@@ -6,6 +6,8 @@ import CreateCampaign from "./pages/campaigns/create-campaign";
 
 import Audience from "./pages/audience";
 import AudienceAnalytics from "./pages/audience/analytics";
+import CreateList from "./pages/audience/CreateList.jsx";
+
 
 import Automation from "./pages/automation";
 import AddServer from "./pages/automation/add-server.jsx";
@@ -33,6 +35,7 @@ function App() {
         <Route path="/audience-webforms" element={<Audience />} />
         <Route path="/audience-summary" element={<Audience />} />
         <Route path="/audience-analytics" element={<AudienceAnalytics />} />
+        <Route path="/audience-create-list" element={<CreateList />} />
 
         <Route path="/autoresponder" element={<Smtp />} />
         <Route path="/automation" element={<Automation />} />

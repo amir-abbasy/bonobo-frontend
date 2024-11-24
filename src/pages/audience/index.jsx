@@ -58,7 +58,7 @@ function Index() {
                             <FilterIcon w='20' h='20' className='' />
                         </button>
 
-                        <Button name="Create Campaign" onClick={() => nav('/create-campaign')} />
+                        <Button name="Create new list" onClick={() => nav('/audience-create-list')} />
                     </div>
                 </div>
 

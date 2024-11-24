@@ -1,9 +1,10 @@
 import React from 'react';
 import { useState } from 'react'
-import { Layout, DropDown, Button, Modal } from '../../components'
+import { Layout, DropDown, Button, Modal, SearchInput } from '../../components'
 import DynamicForm from '../../components/Form';
 
 import Joi from 'joi';
+import { SettingIcon, TemplateIcon } from '../../components/Icons';
 
 
 const formData = [
@@ -89,7 +90,7 @@ const sections = ['Create campaign', 'Choose contacts', 'Preview campaign']
 
 function Index() {
   const [options, setOpstion] = useState({ value: 'value', data: [{ title: 'Amir', value: 'amir' }, { title: 'Amir2', value: 'amir2' }] })
-  const [activeSection, setActiveSection] = useState('Create campaign') // choose_contacts, preview_campaign
+  const [activeSection, setActiveSection] = useState(0) // choose_contacts, preview_campaign
   const [showModal, setShowModal] = useState(false)
 
 
@@ -100,22 +101,27 @@ function Index() {
   };
 
   return (
-    <Layout className='pt-8 px-2 sm:px-0 ' >
+    <Layout className='pt-8 px-2 sm:px-0  flex flex-col pb-0 relative' >
       <div className='flex items-center'>
-        <h1 className='font-bold text-2xl my-4'>Create campaign</h1>
+        <h1 className='font-bold text-2xl my-4'>{sections[activeSection]}</h1>
       </div>
 
       <div className='flex w-full items-center justify-center text-center sm:gap-x-4 mb-8'>
         {sections.map((section, key) => {
-          return <div className='flex items-center cursor-pointer' key={key}>
-            {key > 0 && <div className={`h-[1px] w-12  ${section == activeSection ? 'bg-brand-primary' : 'bg-gray-300'} `} />}
-            <div className={`size-6 mr-4 rounded-full border-[6px]  ${section == activeSection ? 'bg-white  border-brand-primary' : 'bg-gray-500  border-gray-300'} `} />
-            <a className={` font-normal text-sm ${section == activeSection ? 'text-brand-primary' : 'text-gray-500'}`}>{section}</a>
+          return <div className='flex items-center cursor-pointer' key={key} onClick={() => setActiveSection(key)}>
+            {key > 0 && <div className={`h-[1px] w-12  ${key <= activeSection ? 'bg-brand-primary' : 'bg-gray-300'} `} />}
+            <div className={`size-6 mr-4 rounded-full border-[6px]  ${key <= activeSection ? 'bg-white  border-brand-primary' : 'bg-gray-500  border-gray-300'} `} />
+            <a className={` font-normal text-sm ${key <= activeSection ? 'text-brand-primary' : 'text-gray-500'}`}>{section}</a>
           </div>
         })}
       </div>
 
-      <div className='flex flex-col sm:flex-row justify-between'>
+
+
+
+
+
+      {sections[activeSection] == sections[0] && <div className='flex flex-col sm:flex-row justify-between'>
         <div className='bg-white w-full rounded-3xl p-6 sm:flex-[.5]'>
           <DynamicForm
             data={formData}
@@ -149,7 +155,191 @@ function Index() {
 
 
 
+      </div>}
+
+
+
+      {sections[activeSection] == sections[1] && <div className='xl:flex flex-col sm:flex-row justify-between  gap-x-8'>
+        <div className='flex-1'>
+          <div className='flex justify-between '> <div className='flex justify-between gap-x-4'> <Button name='Contact Lists' /> <Button name='Segments' className='bg-none border border-slate-300 hover:bg-slate-300' /></div> <SearchInput /></div>
+
+          <p className='my-6'><span className='font-semibold'>6</span> lists, <span className='font-semibold'>46</span> Contacts</p>
+
+
+
+          <div className='grid grid-cols-2 bg-white rounded-3xl p-8 '>
+            {new Array(8).fill("*").map((item, key) => {
+              return <div class="flex items-center mb-4 " key={key}>
+                <input id={`list-checkbox_${key}`} type="checkbox" value="" className="checkbox" />
+                <label for={`list-checkbox_${key}`} class="ms-2 text-lg font-light text-gray-900 _dark:text-gray-300">List 213(74)</label>
+              </div>
+            })}
+          </div>
+        </div>
+
+
+        <div className='flex-1'>
+
+          {/* Rules */}
+          <div className='flex flex-col bg-white rounded-3xl p-8 mt-8 xl:mt-0 '>
+            <div className='flex items-center mb-4'>
+              <SettingIcon />
+              <h6 className='ml-2 font-semibold text-xl'>Rules</h6>
+            </div>
+            <span className='flex items-center mt-4'>A. Send emails to
+              <span>
+                <DropDown data={[
+                  { value: 'first', title: 'first' },
+                  { value: 'last', title: 'last' },
+                ]}
+                  value={'first'}
+                  className="w-fit mx-4 border-0 border-b px-4 py-0 rounded-none text-center hover:border-brand-primary font-semibold "
+                />
+              </span>
+              <input className='w-20 outline-none border-b mx-4 text-center hover:border-brand-primary' value={'10,000'} /> contacts
+            </span>
+
+
+
+            <span className='flex items-center mt-6'>B. Send emails to
+              <input className='w-10 outline-none border-b mx-4 text-center hover:border-brand-primary' value={'20'} />
+              % of the subscribers, Pause the campaign if</span>
+
+
+
+            <span className='flex items-center mt-4'>
+              <span>
+                <DropDown data={[
+                  { value: 'open_rate', title: 'Open rate' },
+                  { value: 'click_rate', title: 'Click rate' },
+                ]}
+                  value={'open_rate'}
+                  className="w-fit mx-4 border-0 border-b px-4 py-0 rounded-none text-center hover:border-brand-primary font-semibold "
+                />
+              </span>
+              <p>is</p>
+              <span>
+                <DropDown data={[
+                  { value: 'gt', title: 'greater than' },
+                  { value: 'lt', title: 'Less than' },
+                ]}
+                  value={'gt'}
+                  className="w-fit mx-4 border-0 border-b px-4 py-0 rounded-none text-center hover:border-brand-primary font-semibold "
+                />
+              </span>
+              <input className='w-10 outline-none border-b mx-4 text-center hover:border-brand-primary' value={'20'} />
+              <p> % after</p>
+              <input className='w-20 outline-none border-b mx-4 text-center hover:border-brand-primary' placeholder='00:00' />
+              <span>
+                <DropDown data={[
+                  { value: 'minitue', title: 'Minutes' },
+                  { value: 'hour', title: 'Houres' },
+                  { value: 'day', title: 'Days' },
+                ]}
+                  value={'minitue'}
+                  className="w-fit mx-4 border-0 border-b px-4 py-0 rounded-none text-center hover:border-brand-primary font-semibold "
+                />
+              </span>
+            </span>
+          </div>
+
+
+          {/* Template review */}
+          <div className='flex flex-col bg-white rounded-3xl p-8 mt-8  '>
+            <div className='flex items-center mb-4'>
+              <TemplateIcon />
+              <h6 className='ml-2 font-semibold text-xl'>Template review</h6>
+            </div>
+
+            <div className='flex justify-between w-1/2 mt-8'>
+              <p>Broken links</p> <p className='bg-brand-background px-4 rounded-lg font-semibold'>0</p>
+            </div>
+
+            <div className='flex justify-between w-1/2 mt-8'>
+              <p>Blacklisted domains</p> <p className='bg-brand-background px-4 rounded-lg font-semibold '>0</p>
+            </div>
+
+          </div>
+        </div>
+
+      </div>}
+
+
+      {sections[activeSection] == sections[2] && <div className='bg-white rounded-3xl  p-6'>
+
+        <div className='px-8 sm:px-32 bg-brand-background   py-4 '>
+          <p className='font-bold'>Subject line <span className='font-normal ml-2'>asdasd</span></p>
+          <p className='font-bold'>From <span className='font-normal ml-2'>Cordispatch Software business@cordispatch.com</span></p>
+          <p className='font-bold'>Preview text <span className='font-normal ml-2'>asdasd</span></p>
+        </div>
+
+        <div className='px-8 sm:px-32 bg-brand-background mt-6 py-4 '>
+          <p className='font-semibold'>
+            Hey {`{{name}}`},
+          </p>
+          <br />
+          <br />
+          <br />
+          <p>This is just an email example showing how plain is "plain text" email.</p>
+          <p>it doesn't include any images.</p>
+          <br />
+          <p>Truly just plain text.</p>
+          <br />
+          <br />
+          <br />
+          <p>Have a great day,</p>
+          <p>Emilie</p>
+          <p>from team mailercloud</p>
+        </div>
+
+
+
+        <div className='px-8 sm:px-32 bg-brand-background mt-6 py-4 '>
+          <div className='flex items-center mb-4'>
+            <SettingIcon />
+            <h6 className='ml-2 font-semibold text-xl'>Rules</h6>
+          </div>
+          <p className='my-6'><span className='font-semibold'>6</span> lists, <span className='font-semibold'>46</span> Contacts</p>
+        </div>
+
+        <div className='px-8 sm:px-32 bg-brand-background mt-6 py-4 '>
+          <div className='flex items-center mb-4'>
+            <TemplateIcon />
+            <h6 className='ml-2 font-semibold text-xl'>Template review</h6>
+          </div>
+          <p className='my-6'><span className='font-semibold'>6</span> lists, <span className='font-semibold'>46</span> Contacts</p>
+        </div>
+
+
+
+
+      </div>}
+
+
+
+
+
+      <div className='bg-white p-8 rounded-t-3xl flex justify-between fixed bottom-0 right-0 left-0 mx-4 sm:mx-44'>
+        <Button className="p-3 px-8 bg-none hover:bg-slate-200 text-slate-600 border" name='Cancel'
+          onClick={_ => {
+            if (activeSection == 0) return
+            setActiveSection(activeSection - 1)
+          }}
+        />
+        <Button className="p-3 px-8 text-white" name='Save & Continue'
+          onClick={_ => {
+            if (activeSection < sections.length - 1) {
+              setActiveSection(activeSection + 1)
+            }
+          }}
+        />
       </div>
+
+
+
+
+
+
 
       <Modal visible={showModal} onClose={() => setShowModal(false)} >
         <section className='p-8 '>

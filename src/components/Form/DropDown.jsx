@@ -62,7 +62,7 @@ const DropDown = ({
 
 
 
-  return <div className={`relative ${classNameContainer} ${disabled ? 'opacity-40' : ''}`} ref={wrapperRef}>
+  return <div className={`relative cursor-pointer ${classNameContainer} ${disabled ? 'opacity-40' : ''}`} ref={wrapperRef}>
     {/* custom picker */}
     {picker ? <div onClick={() => !disabled && setOpen(!isOpen)}>{picker?.()}</div> :
       <>
@@ -77,7 +77,7 @@ const DropDown = ({
             />}
             {!noLabel && <p className="mr-2">{data?.find((item) => item.value == value)?.title ?? placeholder}</p>}
           </div>
-          <ArrawIcon className={`${isOpen ? '-rotate-90' : 'rotate-90'} transition-all duration-300`} w={20} h={20} />
+          <ArrawIcon className={`${isOpen ? '-rotate-90' : 'rotate-90'} transition-all duration-300`} w={16} h={16} />
         </div>
       </>
     }
@@ -90,7 +90,7 @@ const DropDown = ({
       {data?.map((item, key) => {
         if (item?.hide) return
         return <a
-          className={`drop-down-child px-4 py-2 text-sm flex  hover:bg-[#f8f9fa] justify-between items-center cursor-pointer ${value == key ? 'bg-[#9A718B20]' : 'border-b border-[#9A718B20]'}`} role="menuitem"
+          className={`drop-down-child px-4 py-2 text-sm flex  hover:bg-[#f8f9fa] justify-between items-center  ${value == key ? 'bg-[#9A718B20]' : 'border-b border-[#9A718B20]'}`} role="menuitem"
           onClick={() => {
             input.onChange(item.value)
             onSelect(item.value)
