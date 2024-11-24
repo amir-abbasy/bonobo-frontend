@@ -3,8 +3,12 @@ import { Controller, useForm } from 'react-hook-form';
 import { joiResolver } from '@hookform/resolvers/joi';
 import Joi from 'joi';
 import { twMerge } from 'tailwind-merge'
-import DropDown from './DropDown';
 
+////////////  Author /////////////////
+
+// https://github.com/amir-abbasy
+
+/////////////////////////////////////
 
 // DynamicForm Component
 const DynamicForm = ({ data, onSubmit, itemClassName, containerClass: globalContainerClass, label: showLabel, labelClassName, submitClassName, className: globalClassName, submitName = 'submit' }) => {
@@ -118,7 +122,7 @@ const DynamicForm = ({ data, onSubmit, itemClassName, containerClass: globalCont
                 );
             })}
 
-            <div className='w-full'>
+            <div className='w-full flex justify-end'>
                 <button
                     type="submit"
                     className={twMerge(`w-full bg-blue-500 text-white rounded px-4 py-2 mt-4 hover:bg-blue-600 active:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 transition-colors ${submitClassName}`)}

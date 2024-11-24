@@ -72,37 +72,41 @@ function Index() {
         {/* TABLE */}
         {mockData ? <Table
           // title="title"
-          className="rounded-3xl bg-white p-6 text-gray-800"
+          className="rounded-3xl bg-white p-6 pt-0 text-gray-800"
           data={mockData}
           pageLength={mock_automation.length / 10}
           // showTitle={true}
-          renderItem={(item, key) => {
+          renderItem={(item, key, Title) => {
             return <div
               key={"mockData_item_" + key}
-              className={`flex items-center rounded-md border-b border-brand-background  text-ellipsis whitespace-nowrap  py-4 table-col-b table-col-[#f2f3f5] ${key % 2 == 0 ? 'table-col-b-[#f2f3f5]' : ''} dark:bg-secondary-800`}
+              className={`flex items-center rounded-md border-b border-brand-background  text-ellipsis whitespace-nowrap  py-6 table-col-b table-col-[#f2f3f5] ${key % 2 == 0 ? 'table-col-b-[#f2f3f5]' : ''} dark:bg-secondary-800`}
             >
               <div className="mr-16">
-                <p className="text-sm font-light text-gray-400">Name</p>
+                {/* <p className="text-sm font-light text-gray-400">Name</p> */}
+                {Title('Name')}
                 <p className="text-brand-primary font-medium">
                   {item.name}
                 </p>
               </div>
               <div className="table-col">
-                <p className="text-sm font-light text-gray-400  table-col ">From Email</p>
+                {Title('From Email')}
+                {/* <p className="text-sm font-light text-gray-400  table-col ">From Email</p> */}
                 <p className='font-normal'>
                   {item.from_email}
                 </p>
               </div>
 
               <div className="table-col ">
-                <p className="text-sm font-light text-gray-400">From Name</p>
+                {Title('From Name')}
+                {/* <p className="text-sm font-light text-gray-400">From Name</p> */}
                 <p className='max-w-40 font-normal'>
                   {item.from_name}
                 </p>
               </div>
 
               <div className="min-w-64">
-                <p className="text-sm font-light text-gray-400">Type</p>
+                {Title('Type')}
+                {/* <p className="text-sm font-light text-gray-400">Type</p> */}
                 <p className='break-words text-normal max-w-40'>
                   {item.type}
                 </p>
@@ -110,7 +114,8 @@ function Index() {
 
 
               <div className="min-w-64">
-                <p className="text-sm font-light text-gray-400">Hostname</p>
+                {Title('Hostname')}
+                {/* <p className="text-sm font-light text-gray-400">Hostname</p> */}
                 <p className='break-words text-normal max-w-40'>
                   {item.hostname}
                 </p>

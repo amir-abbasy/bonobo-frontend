@@ -101,7 +101,7 @@ function Index() {
   };
 
   return (
-    <Layout className='pt-8 px-2 sm:px-0  flex flex-col pb-0 relative' >
+    <Layout className='pt-8 px-2 sm:px-0 flex flex-col sm:pb-32 relative' >
       <div className='flex items-center'>
         <h1 className='font-bold text-2xl my-4'>{sections[activeSection]}</h1>
       </div>

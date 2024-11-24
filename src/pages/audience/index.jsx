@@ -33,12 +33,12 @@ function SearchInput() {
 
 
 function Index() {
-    const [payoutRequests, setPayoutRequests] = useState()
+    const [audiences, setAudience] = useState()
     const nav = useNavigate();
 
     useEffect(() => {
         setTimeout(() => {
-            setPayoutRequests(mock_campaign.slice(0, 10))
+            setAudience(mock_campaign.slice(0, 10))
         }, 1000)
     }, [])
 
@@ -65,19 +65,19 @@ function Index() {
 
                 {/* TABLE */}
 
-                {payoutRequests ? <Table
+                {audiences ? <Table
                     // title="title"
                     className="rounded-3xl bg-white p-6 text-gray-800"
-                    data={payoutRequests}
+                    data={audiences}
                     pageLength={mock_campaign.length / 10}
                     // showTitle={true}
-                    renderItem={(item, key) => {
+                    renderItem={(item, key, Title) => {
                         return <div
                             key={"payoutRequests_item_" + key}
-                            className={`flex  items-center rounded-md border-b border-brand-background  text-ellipsis whitespace-nowrap  py-4 table-col-b table-col-[#f2f3f5] ${key % 2 == 0 ? 'table-col-b-[#f2f3f5]' : ''} dark:bg-secondary-800`}
+                            className={`flex  items-center rounded-md border-b border-brand-background  text-ellipsis whitespace-nowrap  py-5 table-col-b table-col-[#f2f3f5] ${key % 2 == 0 ? 'table-col-b-[#f2f3f5]' : ''} dark:bg-secondary-800`}
                         >
                             <div className="flex-1">
-                                <p className="text-sm font-light text-gray-400">Name</p>
+                                {Title('Name')}
                                 <p className="text-brand-primary font-medium">
                                     {item.name}
                                 </p>
@@ -85,14 +85,14 @@ function Index() {
 
 
                             <div className="flex-1">
-                                <p className="text-sm font-light text-gray-400">Last Updated</p>
+                                {Title('Last Updated')}
                                 <p className='max-w-40 font-normal'>
                                     {item.last_updated.split(' ')[0]}
                                 </p>
                             </div>
 
                             <div className="flex-1">
-                                <p className="text-sm font-light text-gray-400">Audience Count</p>
+                                {Title('Audience Count')}
                                 <p className='break-words text-normal max-w-40'>
                                     {item.audience_count}
                                 </p>

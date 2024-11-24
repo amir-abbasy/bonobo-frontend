@@ -2,12 +2,29 @@ import React from 'react';
 import { useState } from 'react'
 import { Layout, DropDown, Button, Modal } from '../../components'
 import DynamicForm from '../../components/Form';
-
 import Joi from 'joi';
 import { useParams } from 'react-router-dom';
 
+import ChooseProvider from './ChooseProvider'
+
 
 const formDataAPI = [
+  {
+    // type: 'text',
+    name: 'Provider',
+    placeholder: 'Provider',
+    // label: 'SES Name',
+    validation: Joi.string().min(3).max(30).required().messages({
+      'string.empty': 'SES Name is required',
+    }),
+    // layout: 'row',
+    className: "",
+    containerClass: "",
+    // showLabel: false
+    render: (field) => {
+      return <ChooseProvider input={field} />
+    }
+  },
   {
     type: 'text',
     name: 'SES Name',
@@ -27,7 +44,7 @@ const formDataAPI = [
     type: 'email',
     name: 'Access Key',
     label: 'Access Key',
-    placeholder: 'SES Name',
+    placeholder: 'Access Key',
 
     validation: Joi.string().email({ tlds: { allow: false } }).required().messages({
       'string.empty': 'Email is required',
@@ -39,7 +56,7 @@ const formDataAPI = [
     type: 'text',
     name: 'Secret Key',
     label: 'Secret Key',
-    placeholder: 'SES Name',
+    placeholder: 'Secret Key',
     validation: Joi.string().min(6).required().messages({
       'string.empty': 'Password is required',
       'string.min': 'Password must be at least 6 characters long',
@@ -50,7 +67,7 @@ const formDataAPI = [
     type: 'text',
     name: 'From Name',
     label: 'From Name',
-    placeholder: 'SES Name',
+    placeholder: 'From Name',
     validation: Joi.number().min(0).max(100).messages({
       'number.base': 'Age must be a number',
       'number.min': 'Age must be at least 0',
@@ -61,7 +78,7 @@ const formDataAPI = [
     type: 'email',
     name: 'From Email',
     label: 'From Email',
-    placeholder: 'SES Name',
+    placeholder: 'From Email',
     validation: Joi.string().email({ tlds: { allow: false } }).required().messages({
       'date.base': 'Email is required',
       'string.email': 'Email must be a valid email address',
@@ -71,7 +88,7 @@ const formDataAPI = [
     type: 'text',
     name: 'Sending Rate',
     label: 'Sending Rate',
-    placeholder: 'SES Name',
+    placeholder: 'Sending Rate',
     validation: Joi.number().min(0).max(100).messages({
       'number.base': 'Age must be a number',
       'number.min': 'Age must be at least 0',
@@ -83,7 +100,7 @@ const formDataAPI = [
     type: 'text',
     name: 'SMTP Limit',
     label: 'SMTP Limit',
-    placeholder: 'SES Name',
+    placeholder: 'SMTP Limit',
     validation: Joi.number().min(0).max(100).messages({
       'number.base': 'Age must be a number',
       'number.min': 'Age must be at least 0',
@@ -238,11 +255,9 @@ const formDataSMTP = [
 ];
 
 
-const sections = ['Create campaign', 'Choose contacts', 'Preview campaign']
-
 function Index() {
   const [options, setOpstion] = useState({ value: 'value', data: [{ title: 'Amir', value: 'amir' }, { title: 'Amir2', value: 'amir2' }] })
-  const [activeSection, setActiveSection] = useState('Create campaign') // choose_contacts, preview_campaign
+  const [provider, setProvider] = useState('aws') // choose_contacts, preview_campaign
   const { type } = useParams()
 
 
@@ -258,7 +273,7 @@ function Index() {
       </div>
 
       <div className='flex justify-center'>
-        <div className='w-fit rounded-3xl p-6'>
+        <div className='w-fit rounded-3xl '>
           <DynamicForm
             data={type == 'smtp' ? formDataSMTP : formDataAPI}
             onSubmit={handleFormSubmit}

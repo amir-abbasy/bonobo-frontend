@@ -33,12 +33,12 @@ function SearchInput() {
 
 
 function Contacts() {
-    const [payoutRequests, setPayoutRequests] = useState()
+    const [contacts, setContacts] = useState()
     const nav = useNavigate();
 
     useEffect(() => {
         setTimeout(() => {
-            setPayoutRequests(mock_contacts.slice(0, 10))
+            setContacts(mock_contacts.slice(0, 10))
         }, 1000)
     }, [])
 
@@ -46,10 +46,10 @@ function Contacts() {
         <div>
 
             {/* TABLE */}
-            {payoutRequests ? <Table
+            {contacts ? <Table
                 // title="title"
                 className="rounded-3xl bg-white p-6 text-gray-800"
-                data={payoutRequests}
+                data={contacts}
                 pageLength={mock_contacts.length / 10}
                 // showTitle={true}
                 renderItem={(item, key) => {

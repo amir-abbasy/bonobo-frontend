@@ -1,8 +1,19 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { ArrawIcon } from "./Icons";
+import { twMerge } from "tailwind-merge";
 // import { useTranslation } from "react-i18next";
 // https://dribbble.com/shots/25167890-Shipping-Web-App
+
+
+
+const Title = (name) => {
+  if (!name) return
+  return <h1 className="font-light text-gray-400 uppercase mb-4">
+    {name}
+  </h1>
+}
+
 
 export default function Table({
   data,
@@ -10,7 +21,7 @@ export default function Table({
   title,
   filterFields,
   className,
-  showTitle,
+  classNameContainer,
   onChangePage,
   filterData,
   pageLength = 6
@@ -27,9 +38,10 @@ export default function Table({
   }, [filter.page]);
 
 
+
   return (
-    <div className={className + " relative"}>
-      <div className="flex justify-between items-center">
+    <div className={twMerge('relative rounded-3xl bg-white px-6 py-2', classNameContainer)}>
+      {/* <div className="flex justify-between items-center">
         <h1 className={"text-2xl"}>{title}</h1>
         {filterFields && (
           <button
@@ -39,11 +51,13 @@ export default function Table({
             <span className="material-symbols-outlined">filter_alt</span>
           </button>
         )}
-      </div>
-
+      </div> */}
+      {/* 
       {showTitle && data && data.length > 0 && (
-        <div className="my-4 flex justify-between items-center">
+        <div className="my-4 flex justify-between items-center flex-1">
           {Object.keys(data[0]).map((item, key) => {
+            console.log({item});
+            
             return (
               <h1 className="uppercase text-xs text-textColor flex-1" key={"table_head_" + key}>
                 {item.replace("_", " ")}
@@ -51,11 +65,11 @@ export default function Table({
             );
           })}
         </div>
-      )}
+      )} */}
       {data && data.length > 0 ? (
-        <div className="overflow-x-scroll">
+        <div className={twMerge("overflow-x-scroll", className)}>
           {data.map((item, key) => {
-            return renderItem(item, key);
+            return renderItem(item, key, key > 0 ? _ => null : Title);
           })}
         </div>
       ) : (

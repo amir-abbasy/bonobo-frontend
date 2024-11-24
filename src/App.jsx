@@ -14,9 +14,8 @@ import AddServer from "./pages/automation/add-server.jsx";
 import Profile from "./pages/profile";
 
 
-import Smtp from "./pages/smtp";
-import SES from "./pages/ses";
-import CreateSES from "./pages/ses/create-ses";
+import Autoresponder from "./pages/autoresponder";
+import Templates from "./pages/templates";
 
 
 
@@ -37,10 +36,10 @@ function App() {
         <Route path="/audience-analytics" element={<AudienceAnalytics />} />
         <Route path="/audience-create-list" element={<CreateList />} />
 
-        <Route path="/autoresponder" element={<Smtp />} />
+        <Route path="/autoresponder" element={<Autoresponder />} />
         <Route path="/automation" element={<Automation />} />
         <Route path="/add-server/:type" element={<AddServer />} />
-        <Route path="/templates" element={<SES />} />
+        <Route path="/templates" element={<Templates />} />
         <Route path="/profile" element={<Profile />} />
       </Routes>
     </Router>

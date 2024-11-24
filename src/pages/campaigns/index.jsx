@@ -14,20 +14,18 @@ const select_options = [{ name: "View Email", value: "view_email" },
 
 
 function Index() {
-  const [payoutRequests, setPayoutRequests] = useState()
+  const [campaigns, setCampaigns] = useState()
   const nav = useNavigate();
 
   useEffect(() => {
     setTimeout(() => {
-      setPayoutRequests(mock_campaign.slice(0, 10))
+      setCampaigns(mock_campaign.slice(0, 10))
     }, 2000)
   }, [])
 
   return (
     <Layout>
       <div>
-      <h1 className='sm:hidden font-bold text-2xl pt-6'>Campaigns</h1>
-
         {/* HEADER */}
         <div className='sm:h-24 flex items-center justify-between  '>
           <h1 className='hidden sm:block font-bold text-2xl'>Campaigns</h1>
@@ -49,40 +47,44 @@ function Index() {
 
         {/* TABLE */}
 
-        {payoutRequests ? <Table
+        {campaigns ? <Table
           // title="title"
-          className="rounded-3xl bg-white p-6 text-gray-800"
-          data={payoutRequests}
+          className=" text-gray-800 flex-row"
+          data={campaigns}
           pageLength={mock_campaign.length / 10}
-          // showTitle={true}
-          renderItem={(item, key) => {
+          showTitle={false}
+          renderItem={(item, key, Title) => {
             return <div
               key={"payoutRequests_item_" + key}
               className={`flex items-center rounded-md border-b border-brand-background  text-ellipsis whitespace-nowrap  py-4 table-col-b table-col-[#f2f3f5] ${key % 2 == 0 ? 'table-col-b-[#f2f3f5]' : ''} dark:bg-secondary-800`}
             >
               <div className="mr-16">
-                {/* <p className="text-sm font-light text-gray-400">Campaign Name</p> */}
+                {/* {key == 0 && <p className="font-light text-gray-400 uppercase mb-4">Campaign Name</p>} */}
+                {Title('Campaign Name')}
                 <p className="text-brand-primary font-medium">
                   {item.campaign_name}
                 </p>
                 <p className='text-sm mt-2'>Introducing Cordispatch Software – Elevate Your Cab Se</p>
               </div>
               <div className="table-col">
-                <p className="text-sm font-light text-gray-400  table-col ">Status</p>
+                {Title('Status')}
+                {/* <p className="text-sm font-light text-gray-400  table-col ">Status</p> */}
                 <p className='font-normal'>
                   {item.status}
                 </p>
               </div>
 
               <div className="table-col ">
-                <p className="text-sm font-light text-gray-400">Last updated</p>
+                {/* <p className="text-sm font-light text-gray-400">Last updated</p> */}
+                {Title('Last updated')}
                 <p className='max-w-40 font-normal'>
                   {item.last_updated.split(' ')[0]}
                 </p>
               </div>
 
               <div className="min-w-64">
-                <p className="text-sm font-light text-gray-400">Type</p>
+                {Title('Type')}
+                {/* <p className="text-sm font-light text-gray-400">Type</p> */}
                 <p className='break-words text-normal max-w-40'>
                   {item.type}
                 </p>
