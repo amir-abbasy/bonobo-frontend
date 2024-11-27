@@ -11,7 +11,7 @@ import { twMerge } from 'tailwind-merge'
 /////////////////////////////////////
 
 // DynamicForm Component
-const DynamicForm = ({ data, onSubmit, itemClassName, containerClass: globalContainerClass, label: showLabel, labelClassName, submitClassName, className: globalClassName, submitName = 'submit' }) => {
+const DynamicForm = ({ data, onSubmit, itemClassName, containerClass: globalContainerClass, label: showLabel, labelClassName, submitClassName, className: globalClassName, submitName = 'submit', submitButton }) => {
     // Dynamically create the Joi validation schema based on formData
     const validationSchema = Joi.object(
         data.reduce((schema, field) => {
@@ -93,7 +93,7 @@ const DynamicForm = ({ data, onSubmit, itemClassName, containerClass: globalCont
                                         value={option.value}
                                         {...register(name)}
                                         {...rest}
-                                        className={twMerge(`form-radio text-blue-600 ${className}`)}
+                                        className={twMerge(`form-radio text-blue-600 mr-2 ${className}`)}
                                     />
                                     {option.label}
                                 </label>
@@ -122,13 +122,16 @@ const DynamicForm = ({ data, onSubmit, itemClassName, containerClass: globalCont
                 );
             })}
 
-            <div className='w-full flex justify-end'>
-                <button
+            <div className='w-full flex justify-end'
+                onClick={submitButton ? handleSubmit(handleFormSubmit) : null}
+                type="submit"
+            >
+                {submitButton ? submitButton?.() : <button
                     type="submit"
-                    className={twMerge(`w-full bg-blue-500 text-white rounded px-4 py-2 mt-4 hover:bg-blue-600 active:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 transition-colors ${submitClassName}`)}
+                    className={twMerge(`w-full bg-blue-500 text-white rounded px-4 py-2 mt-4 hover:bg-blue-600 active:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 transition-colors`, submitClassName)}
                 >
                     {submitName}
-                </button>
+                </button>}
             </div>
 
         </form>

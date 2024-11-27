@@ -6,39 +6,39 @@
         "submneu": [
             {
                 "name": "Mail Servers",
-                "path": "/profile",
+                "path": "/account/Mail Servers",
                 "icon": ""
             },
             {
                 "name": "Email Verification",
-                "path": "/profile",
+                "path": "/account/Email Verification",
                 "icon": ""
             }
         ]
     },
     {
         "name": "Maadan",
-        "path": "/profile",
+        "path": "/account",
         "icon": "",
         "submneu": [
             {
                 "name": "Profile",
-                "path": "/profile",
+                "path": "/account/Profile",
                 "icon": ""
             },
             {
                 "name": "Account",
-                "path": "/profile",
+                "path": "/account/Account",
                 "icon": ""
             },
             {
                 "name": "Users",
-                "path": "/profile",
+                "path": "/account/Users",
                 "icon": ""
             },
             {
                 "name": "Billing",
-                "path": "/profile",
+                "path": "/account/Billing",
                 "icon": ""
             }
         ]

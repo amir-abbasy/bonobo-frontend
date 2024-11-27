@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { ArrawIcon, MoreIcon } from './Icons'
+import { twMerge } from 'tailwind-merge';
 
-function Select({ options = [] }) {
+function Select({ options = [], icon: Icon = MoreIcon, className, containerClassName}) {
     const [isOpen, setIsOpen] = useState(false);
 
     const wrapperRef = useRef(null);
@@ -23,18 +24,18 @@ function Select({ options = [] }) {
     };
 
     return (
-        <div className="relative inline-block text-left mx-4 overflow-visible" ref={wrapperRef}>
+        <div className={twMerge('relative inline-block text-left mx-4 overflow-visible', containerClassName )} ref={wrapperRef}>
             {/* Picker (Icon) */}
             <button
                 onClick={toggleDropdown}
                 className="flex items-center justify-center w-8 h-8 rounded-full hover:bg-brand-background"
             >
-                <MoreIcon className="w-16 h-16 " />
+                <Icon className="w-16 h-16 " />
             </button>
 
             {/* Dropdown Menu */}
             {isOpen && (
-                <div className="absolute right-0 z-10 mt-2 w-40 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5">
+                <div className={twMerge(`absolute right-0 z-10 mt-2 w-40 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5`, className)}>
                     <div className="py-1">
                         {options.map((option, idx) => {
                             return <a

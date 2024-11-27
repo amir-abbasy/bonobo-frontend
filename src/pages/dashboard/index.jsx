@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react'
-import { Button, Layout } from '../../components'
-import { CalendarIcon, CallIcon, MessageIcon, UsersIcon } from '../../components/Icons'
+import { Button, Layout, Select } from '../../components'
+import { ArrawIcon, CalendarIcon, CallIcon, MessageIcon, UsersIcon } from '../../components/Icons'
 import LineChart from './LineChart';
 import StackedChart from './StackedChart';
 import { lineChartOption, lineChartNoAxisOption, generateRandomData } from '../../assets/data/chartData'
@@ -25,17 +25,28 @@ function Index() {
             <CalendarIcon w='20' h='20' className='mr-2' />
             <p>Today</p>
           </button>
-          <Button name='Create Campaign' onClick={() => nav('/create-campaign')} />
+          <div className='bg-gradient-to-l bg-brand-primaryDark flex items-center rounded-full'>
+            <Button name="Create Campaign" onClick={() => nav('/create-campaign')} className='pr-0 text-white' />
+            <Select options={[
+              { name: 'A/B Split Campaign ', value: 'a/b' },
+              { name: 'Autoresponder ', value: 'autoresponder' },
+            ]}
+              containerClassName="mx-0 mr-1 ml-4"
+              className="w-48"
+              icon={() => <ArrawIcon w={20} color='white' className='rotate-90' />
+              }
+            />
+          </div>
         </div>
       </div>
 
 
 
       <div className='bg-white grid grid-cols-2 lg:grid-cols-4 gap-4 justify-between rounded-t-3xl '>
-        {[{ name: 'Contacts', count: 8, change: 66, icon: 'call' },
+        {[{ name: 'Mail Sent ', count: 8, change: 66, icon: 'mail' },
         { name: 'Campaigns', count: 3, change: 166, icon: 'campaign' },
         { name: 'Subscribers', count: 56, change: 126, icon: 'users' },
-        { name: 'Mail Sent', count: 20, change: -36, icon: 'mail' }].map((card, i) => {
+        { name: 'Unsubscribers ', count: 20, change: -36, icon: 'call' }].map((card, i) => {
 
           let Icon = CallIcon
           switch (card.icon) {
@@ -60,9 +71,9 @@ function Index() {
               </div>
               <p className='font-bold text-2xl mt-4'>{card.count}</p>
             </div>
-            <div className='hidden lg:hidden xl:block sm:block w-32'>
+            {/* <div className='hidden lg:hidden xl:block sm:block w-32'>
               <LineChart onlyLine={true} options={lineChartNoAxisOption} data={generateRandomData(7, 50, 100)} />
-            </div>
+            </div> */}
           </div>
         })}
       </div>
@@ -70,10 +81,10 @@ function Index() {
 
 
       <div className='bg-white grid grid-cols-2 lg:grid-cols-4 gap-4 justify-between rounded-b-3xl border-t'>
-        {[{ name: 'Email Servers', count: 4, change: 66, icon: 'call' },
-        { name: 'Total Subscribers', count: 721, change: 166, icon: 'campaign' },
-        { name: 'Daily Sending Limit', count: 1200, change: 126, icon: 'users' },
-        { name: 'Unsubscribers', count: 2154, change: -36, icon: 'mail' }].map((card, i) => {
+        {[{ name: 'Daily Sending Limit', count: 4, change: 66, icon: 'campaign' },
+        { name: 'Contact Lists', count: 721, change: 166, icon: 'call' },
+        { name: 'Total Subscribers ', count: 1200, change: 126, icon: 'users' },
+        { name: 'Email Servers', count: 2154, change: -36, icon: 'mail' }].map((card, i) => {
 
           let Icon = CallIcon
           switch (card.icon) {
@@ -89,7 +100,7 @@ function Index() {
           }
 
 
-          return <div key={'card__'+i} className={`${i > 0 ? 'border-l ' : ''} border-b lg:border-b-0 flex-1 p-6 flex items-center justify-between`}>
+          return <div key={'card__' + i} className={`${i > 0 ? 'border-l ' : ''} border-b lg:border-b-0 flex-1 p-6 flex items-center justify-between`}>
             <div>
               <Icon w={40} h={40} className='strock-gray-500 opacity-20' />
               <div className='mt-2 flex items-center'>
@@ -98,15 +109,15 @@ function Index() {
               </div>
               <p className='font-bold text-2xl mt-4'>{card.count}</p>
             </div>
-            <div className='hidden lg:hidden xl:block sm:block w-32'>
+            {/* <div className='hidden lg:hidden xl:block sm:block w-32'>
               <LineChart onlyLine={true} options={lineChartNoAxisOption} data={generateRandomData(7, 50, 100)} />
-            </div>
+            </div> */}
           </div>
         })}
       </div>
 
 
-      <div className='flex flex-col lg:flex-row gap-x-8'>
+      <div className='flex flex-col lg:flex-row gap-x-8 overflow-scroll'>
         <div className='flex-1'>
           <h1 className='font-medium text-xl mt-8 mb-4'>Sent Mail Analystics</h1>
           <div className='h-fit bg-white p-6 rounded-3xl'>

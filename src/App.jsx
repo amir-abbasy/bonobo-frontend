@@ -11,7 +11,7 @@ import CreateList from "./pages/audience/CreateList.jsx";
 
 import Automation from "./pages/automation";
 import AddServer from "./pages/automation/add-server.jsx";
-import Profile from "./pages/profile";
+import Account from "./pages/account";
 
 
 import Autoresponder from "./pages/autoresponder";
@@ -40,7 +40,7 @@ function App() {
         <Route path="/automation" element={<Automation />} />
         <Route path="/add-server/:type" element={<AddServer />} />
         <Route path="/templates" element={<Templates />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/account/:tab" element={<Account />} />
       </Routes>
     </Router>
   );

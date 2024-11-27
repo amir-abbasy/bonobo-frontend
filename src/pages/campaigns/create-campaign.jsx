@@ -4,7 +4,8 @@ import { Layout, DropDown, Button, Modal, SearchInput } from '../../components'
 import DynamicForm from '../../components/Form';
 
 import Joi from 'joi';
-import { SettingIcon, TemplateIcon } from '../../components/Icons';
+import { CloseIcon, SettingIcon, TemplateIcon } from '../../components/Icons';
+import { useNavigate } from 'react-router-dom';
 
 
 const formData = [
@@ -92,6 +93,7 @@ function Index() {
   const [options, setOpstion] = useState({ value: 'value', data: [{ title: 'Amir', value: 'amir' }, { title: 'Amir2', value: 'amir2' }] })
   const [activeSection, setActiveSection] = useState(0) // choose_contacts, preview_campaign
   const [showModal, setShowModal] = useState(false)
+  const nav = useNavigate()
 
 
 
@@ -101,46 +103,61 @@ function Index() {
   };
 
   return (
-    <Layout className='pt-8 px-2 sm:px-0 flex flex-col sm:pb-32 relative' >
-      <div className='flex items-center'>
-        <h1 className='font-bold text-2xl my-4'>{sections[activeSection]}</h1>
+    <div className='mt-10 sm:mt-20 sm:px-12 xl:px-48 pb-12 min-h-screen ' >
+        <h1 className='sm:hidden font-bold text-2xl p-3'>{sections[activeSection]}</h1>
+
+      <div className='flex items-center my-8 justify-between p-3'>
+        <h1 className='hidden sm:block font-bold text-2xl '>{sections[activeSection]}</h1>
+
+        <div className='flex items-center justify-center text-center sm:gap-x-4 '>
+          {sections.map((section, key) => {
+            return <div className='flex items-center cursor-pointer' key={key} onClick={() => setActiveSection(key)}>
+              {key > 0 && <div className={`h-[1px] w-12  ${key <= activeSection ? 'bg-brand-primary' : 'bg-gray-300'} `} />}
+              <div className={`size-6 mr-4 rounded-full border-[6px]  ${key <= activeSection ? 'bg-white  border-brand-primary' : 'bg-gray-500  border-gray-300'} `} />
+              <a className={` font-normal text-sm ${key <= activeSection ? 'text-brand-primary' : 'text-gray-500'}`}>{section}</a>
+            </div>
+          })}
+        </div>
+
+        <CloseIcon onClick={() => nav('/campaigns')} />
       </div>
 
-      <div className='flex w-full items-center justify-center text-center sm:gap-x-4 mb-8'>
-        {sections.map((section, key) => {
-          return <div className='flex items-center cursor-pointer' key={key} onClick={() => setActiveSection(key)}>
-            {key > 0 && <div className={`h-[1px] w-12  ${key <= activeSection ? 'bg-brand-primary' : 'bg-gray-300'} `} />}
-            <div className={`size-6 mr-4 rounded-full border-[6px]  ${key <= activeSection ? 'bg-white  border-brand-primary' : 'bg-gray-500  border-gray-300'} `} />
-            <a className={` font-normal text-sm ${key <= activeSection ? 'text-brand-primary' : 'text-gray-500'}`}>{section}</a>
-          </div>
-        })}
-      </div>
 
 
 
 
 
-
-      {sections[activeSection] == sections[0] && <div className='flex flex-col sm:flex-row justify-between'>
-        <div className='bg-white w-full rounded-3xl p-6 sm:flex-[.5]'>
+      {sections[activeSection] == sections[0] && <div className='flex  flex-col sm:flex-row justify-between mt-12 '>
+        <div className='flex-1 rounded-3xl p-6 '>
           <DynamicForm
             data={formData}
             onSubmit={handleFormSubmit}
             // itemClassName="border-red-400 bg-brand-background "
             // label={false}
             className="w-full"
-            submitClassName="button-primary px-8"
+            submitClassName="button-primary px-8 hidden"
             submitName="Save & Continue"
+            submitButton={_ => null}
           />
+
 
         </div>
 
 
-        <div className='bg-gradient-to-t from-white rounded-3xl p-6 flex flex-col flex-1 ml-6'>
-          <div className='border p-4 rounded-2xl border-brand-primary'>
-            <p className='font-bold'>Subject line <span className='font-normal ml-2'>asdasd</span></p>
-            <p className='font-bold'>From <span className='font-normal ml-2'>Cordispatch Software business@cordispatch.com</span></p>
-            <p className='font-bold'>Preview text <span className='font-normal ml-2'>asdasd</span></p>
+        <div className='bg-gradient-to-t from-white rounded-3xl p-6 flex flex-col flex-1 ml-6 bg-brand-background'>
+          <div className=' p-4 rounded-2xl bg-white flex flex-col gap-y-3 '>
+            <div className='flex items-center'>
+              <p className='font-bold w-[120px]'>Subject line </p>
+              <p className='font-normal h-3 w-46 sm:w-28 ml-6 bg-brand-background text-brand-background'>******************</p>
+            </div>
+            <div className='flex items-center'>
+              <p className='font-bold w-[120px]'>From  </p>
+              <p className='font-normal h-3 w-46 sm:w-28 ml-6 bg-brand-background text-brand-background'>*********************************</p>
+            </div>
+            <div className='flex items-center'>
+              <p className='font-bold w-[120px]'>Preview text </p>
+              <p className='font-normal h-3 w-46 sm:w-28 ml-6 bg-brand-background text-brand-background'>************************</p>
+            </div>
           </div>
           <div className='flex flex-col justify-center items-center my-16'>
             <img src="https://app2.mailercloud.com/img/email-content.806ec997.svg" className='m-auto w-64 mt-auto' />
@@ -362,12 +379,12 @@ function Index() {
             })}
           </div>
 
-          <Button className="bg-none border text-slate-600 hover:bg-slate-200" name="Cancel" onClick={() => setShowModal(false)} />
+          {/* <Button className="bg-none border text-slate-600 hover:bg-slate-200" name="Cancel" onClick={() => setShowModal(false)} /> */}
         </section>
       </Modal>
 
 
-    </Layout >
+    </div >
   )
 }
 

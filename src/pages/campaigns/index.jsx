@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { Layout, Table, TableSkelton, Button, DropDown, Select, SearchInput } from '../../components'
-import { FilterIcon, SearchIcon } from '../../components/Icons'
+import { FilterIcon, SearchIcon, ArrawIcon } from '../../components/Icons'
 import mock_campaign from '../../assets/data/mock_campaign.json'
 
 
@@ -39,7 +39,18 @@ function Index() {
                 <FilterIcon w='20' h='20' className='' />
               </button>
 
-              <Button name="Create Campaign" onClick={() => nav('/create-campaign')} />
+              <div className='bg-gradient-to-l bg-brand-primaryDark flex items-center rounded-full'>
+                <Button name="Create Campaign" onClick={() => nav('/create-campaign')} className='pr-0 text-white' />
+                <Select options={[
+                  { name: 'A/B Split Campaign ', value: 'a/b' },
+                  { name: 'Autoresponder ', value: 'autoresponder' },
+                ]}
+                  containerClassName="mx-0 mr-1 ml-4"
+                  className="w-48" 
+                  icon={() => <ArrawIcon w={20} color='white' className='rotate-90' />
+                  }
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -55,8 +66,8 @@ function Index() {
           showTitle={false}
           renderItem={(item, key, Title) => {
             return <div
-              key={"payoutRequests_item_" + key}
-              className={`flex items-center rounded-md border-b border-brand-background  text-ellipsis whitespace-nowrap  py-4 table-col-b table-col-[#f2f3f5] ${key % 2 == 0 ? 'table-col-b-[#f2f3f5]' : ''} dark:bg-secondary-800`}
+              key={"campaigns_item_" + key}
+              className={`flex items-center justify-between rounded-md border-b border-brand-background  text-ellipsis whitespace-nowrap  py-4 table-col-b table-col-[#f2f3f5] ${key % 2 == 0 ? 'table-col-b-[#f2f3f5]' : ''} dark:bg-secondary-800`}
             >
               <div className="mr-16">
                 {/* {key == 0 && <p className="font-light text-gray-400 uppercase mb-4">Campaign Name</p>} */}
@@ -82,10 +93,10 @@ function Index() {
                 </p>
               </div>
 
-              <div className="min-w-64">
+              <div className="min-w-32">
                 {Title('Type')}
                 {/* <p className="text-sm font-light text-gray-400">Type</p> */}
-                <p className='break-words text-normal max-w-40'>
+                <p className='break-words text-normal'>
                   {item.type}
                 </p>
               </div>
@@ -95,7 +106,7 @@ function Index() {
                 <p className='font-normal'>{item.open_rate}</p>
               </div> */}
 
-              <div className=" flex items-center w-full justify-end min-w-64">
+              <div className="w-56 flex items-center justify-end">
                 <button className='px-6 p-2 -white hover:text-brand-primary rounded-full text-sm  bg-brand-background transition-all duration-200'>{key % 3 == 0 ? "Statistics" : "View email"}</button>
                 <Select options={select_options} />
               </div>
