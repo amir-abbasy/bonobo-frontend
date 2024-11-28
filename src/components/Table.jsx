@@ -7,9 +7,9 @@ import { twMerge } from "tailwind-merge";
 
 
 
-const Title = (name) => {
+const Title = (name, className) => {
   if (!name) return
-  return <h1 className="font-light text-gray-400 uppercase mb-4">
+  return <h1 className={twMerge("font-light text-gray-400 uppercase mb-4", className)}>
     {name}
   </h1>
 }

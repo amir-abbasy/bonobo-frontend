@@ -103,8 +103,8 @@ function Index() {
   };
 
   return (
-    <div className='mt-10 sm:mt-20 sm:px-12 xl:px-48 pb-12 min-h-screen ' >
-        <h1 className='sm:hidden font-bold text-2xl p-3'>{sections[activeSection]}</h1>
+    <div className='mt-10 sm:mt-20 sm:px-12 xl:px-24 2xl:px-48 pb-24 min-h-screen ' >
+      <h1 className='sm:hidden font-bold text-2xl p-3'>{sections[activeSection]}</h1>
 
       <div className='flex items-center my-8 justify-between p-3'>
         <h1 className='hidden sm:block font-bold text-2xl '>{sections[activeSection]}</h1>
@@ -177,8 +177,14 @@ function Index() {
 
 
       {sections[activeSection] == sections[1] && <div className='xl:flex flex-col sm:flex-row justify-between  gap-x-8'>
-        <div className='flex-1'>
-          <div className='flex justify-between '> <div className='flex justify-between gap-x-4'> <Button name='Contact Lists' /> <Button name='Segments' className='bg-none border border-slate-300 hover:bg-slate-300' /></div> <SearchInput /></div>
+        <div className='flex-1 px-2 sm:px-0'>
+          <div className='flex justify-between flex-wrap'> 
+            <div className='flex justify-between gap-x-4'>
+            <Button name='Contact Lists' />
+            <Button name='Segments' className='bg-none border border-slate-300 hover:bg-slate-300' />
+            </div>
+            <SearchInput className="w-full" />
+          </div>
 
           <p className='my-6'><span className='font-semibold'>6</span> lists, <span className='font-semibold'>46</span> Contacts</p>
 
@@ -224,7 +230,7 @@ function Index() {
 
 
 
-            <span className='flex items-center mt-4'>
+            <span className='flex items-center mt-4 flex-wrap gap-y-4'>
               <span>
                 <DropDown data={[
                   { value: 'open_rate', title: 'Open rate' },

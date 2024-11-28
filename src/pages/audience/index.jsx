@@ -47,20 +47,23 @@ function Index() {
             <div>
 
                 {/* HEADER */}
-                <div className='h-24 flex items-center justify-between'>
-                    <h1 className='font-bold text-2xl'>Audience</h1>
-
-                    <div className='flex'>
-                        <div>
+                <div className='sm:h-24 sm:flex items-center justify-between'>
+                    <h1 className='font-bold text-2xl pt-2'>Audience</h1>
+                    <div className='flex flex-col sm:flex-row items-end sm:items-center px-2'>
+                        <div className='w-full sm:w-auto'>
                             <SearchInput />
                         </div>
-                        <button className='mx-4 hover:ring-1 hover:ring-brand-primary border-gray-300 cursor-pointer bg-white text-black px-3 p-2 flex items-center justify-center hover:from-45% from-65% w-fit rounded-full font-medium'>
-                            <FilterIcon w='20' h='20' className='' />
-                        </button>
+                        <div className='flex my-2 justify-end'>
+                            <button className='mx-4 hover:ring-1 hover:ring-brand-primary border-gray-300 cursor-pointer bg-white text-black px-3 p-2 flex items-center justify-center hover:from-45% from-65% w-fit rounded-full font-medium'>
+                                <FilterIcon w='20' h='20' className='' />
+                            </button>
 
-                        <Button name="Create new list" onClick={() => nav('/audience-create-list')} />
+                            <Button name="Create new list" onClick={() => nav('/audience-create-list')} />
+                        </div>
                     </div>
                 </div>
+
+
 
 
                 {/* TABLE */}

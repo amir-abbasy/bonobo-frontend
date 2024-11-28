@@ -8,7 +8,7 @@ import Profile from './Profile'
 import UsersTable from './UsersTable'
 import Domains from './Domains'
 
-const tabs = ["Profile", "Account", "Users", "Billing", "Mail Servers", "Email Verifiacation"]
+const tabs = ["Profile", "Account", "Users", "Billing", "Mail Servers", "Email Verification"]
 
 function Index() {
     const nav = useNavigate()

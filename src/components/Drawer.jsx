@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { AppIcon, CalendarIcon, UsersIcon, CloseIcon, TemplateIcon, SettingIcon, CampaignIcon, AutoIcon, ResponderIcon } from './Icons'
+import { AppIcon, CalendarIcon, UsersIcon, CloseIcon, TemplateIcon, SettingIcon, CampaignIcon, AutoIcon, ResponderIcon, ArrawIcon } from './Icons'
 import { Link } from 'react-router-dom'
 import menu from '../assets/data/menu.json'
 import footermenu from '../assets/data/footermenu.json'
@@ -101,6 +101,7 @@ function Drawer() {
                                                 })}
                                             </ul>}
                                         </div>
+                                        {hasSubmenu && <span className='block sm:hidden sm:drawer-group-hover:block absolute right-4 translate-y-[2px]'> <ArrawIcon className={`transition-transform duration-500 ${isOpenSubMenu ? 'rotate-90' : ''}`} w="16" h="16" /> </span>}
                                     </div>
 
                                 </Link></li>
@@ -135,6 +136,9 @@ function Drawer() {
                                         </div>
                                         <div className=''><span className={`${configMenu ? 'inline-block' : 'sm:hidden'}   drawer-group-hover:inline-block font-normal text-black fadein_anim_menu_item  hover:text-brand-primary ${activeMenu == page.name ? 'text-brand-primary' : ''}`}>{page.name}</span>
                                         </div>
+
+                                        {hasSubmenu && <span className='block sm:hidden sm:drawer-group-hover:block absolute right-4 translate-y-[2px]'> <ArrawIcon className={`transition-transform duration-500 ${activeMenu == page.name ? 'rotate-90' : ''}`} w="16" h="16" /> </span>}
+
                                     </div>
                                 </Link></li>
                         })}

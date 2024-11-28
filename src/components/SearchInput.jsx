@@ -3,12 +3,12 @@ import { SearchIcon } from './Icons'
 
 function SearchInput() {
   return (
-    <div className="relative sm:max-w-sm  ">
+    <div className="relative sm:max-w-sm  w-full mt-2 sm:mt-0 ">
       {/* Input Field */}
       <input
         type="text"
         placeholder="Search..."
-        className="w-full pl-4 py-2 rounded-full focus:outline-none focus:ring-1 focus:ring-brand-primary focus:border-brand-primary"
+        className="w-full border pl-4 py-2 rounded-full focus:outline-none focus:ring-1 focus:ring-brand-primary focus:border-brand-primary"
       />
 
       {/* Search Icon */}

@@ -60,25 +60,25 @@ function Index() {
 
         {campaigns ? <Table
           // title="title"
-          className=" text-gray-800 flex-row"
+          className=" text-gray-800 flex-row pt-12"
           data={campaigns}
           pageLength={mock_campaign.length / 10}
           showTitle={false}
           renderItem={(item, key, Title) => {
             return <div
               key={"campaigns_item_" + key}
-              className={`flex items-center justify-between rounded-md border-b border-brand-background  text-ellipsis whitespace-nowrap  py-4 table-col-b table-col-[#f2f3f5] ${key % 2 == 0 ? 'table-col-b-[#f2f3f5]' : ''} dark:bg-secondary-800`}
+              className={`relative flex items-center justify-between rounded-md border-b border-brand-background  text-ellipsis whitespace-nowrap py-4 table-col-b table-col-[#f2f3f5] ${key % 2 == 0 ? 'table-col-b-[#f2f3f5]' : ''} dark:bg-secondary-800`}
             >
               <div className="mr-16">
                 {/* {key == 0 && <p className="font-light text-gray-400 uppercase mb-4">Campaign Name</p>} */}
-                {Title('Campaign Name')}
+                {Title('Campaign Name',  "absolute -top-6")}
                 <p className="text-brand-primary font-medium">
                   {item.campaign_name}
                 </p>
                 <p className='text-sm mt-2'>Introducing Cordispatch Software – Elevate Your Cab Se</p>
               </div>
               <div className="table-col">
-                {Title('Status')}
+                {Title('Status',  "absolute -top-6")}
                 {/* <p className="text-sm font-light text-gray-400  table-col ">Status</p> */}
                 <p className='font-normal'>
                   {item.status}
@@ -87,14 +87,14 @@ function Index() {
 
               <div className="table-col ">
                 {/* <p className="text-sm font-light text-gray-400">Last updated</p> */}
-                {Title('Last updated')}
+                {Title('Last updated',  "absolute -top-6")}
                 <p className='max-w-40 font-normal'>
                   {item.last_updated.split(' ')[0]}
                 </p>
               </div>
 
               <div className="min-w-32">
-                {Title('Type')}
+                {Title('Type',  "absolute -top-6")}
                 {/* <p className="text-sm font-light text-gray-400">Type</p> */}
                 <p className='break-words text-normal'>
                   {item.type}

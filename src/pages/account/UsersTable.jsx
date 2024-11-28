@@ -28,7 +28,7 @@ function Contacts() {
             <div className='flex flex-col lg:flex-row justify-between items-center'>
                 <h1 className='font-medium text-2xl mt-8 mb-12'>Add new users</h1>
                 <div>
-                <Button name="Create Campaign" onClick={() =>null}  />
+                <Button name="Add new users" onClick={() =>null}  />
                 </div>
             </div>
 

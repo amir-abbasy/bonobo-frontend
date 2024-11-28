@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { Layout, Table, TableSkelton, Button, DropDown, Select, Modal } from '../../components'
+import { Layout, Table, TableSkelton, Button, DropDown, Select, Modal, SearchInput } from '../../components'
 import { FilterIcon, SearchIcon } from '../../components/Icons'
 import mock_automation from '../../assets/data/mock_automation.json'
 
@@ -10,31 +10,6 @@ const select_options = [{ name: "View Email", value: "view_email" },
 { name: "Edit", value: "edit" },
 { name: "Duplicate", value: "duplicate" },
 { name: "Delete", value: "delete" }]
-
-
-
-
-
-
-function SearchInput() {
-  return (
-    <div className="relative w-full max-w-sm">
-
-      {/* Input Field */}
-      <input
-        type="text"
-        placeholder="Search..."
-        className="w-full pl-4 py-2 rounded-full focus:outline-none focus:ring-1 focus:ring-brand-primary focus:border-brand-primary"
-      />
-
-      {/* Search Icon */}
-      <div className="absolute inset-y-0 right-0 flex items-center pr-3">
-        <SearchIcon w='20' h='20' className='' />
-      </div>
-
-    </div>
-  );
-}
 
 
 function Index() {
@@ -53,18 +28,19 @@ function Index() {
       <div>
 
         {/* HEADER */}
-        <div className='h-24 flex items-center justify-between'>
-          <h1 className='font-bold text-2xl'>Automation</h1>
-
-          <div className='flex'>
-            <div>
+        <div className='sm:h-24 sm:flex items-center justify-between'>
+          <h1 className='font-bold text-2xl pt-2'>Automation</h1>
+          <div className='flex flex-col sm:flex-row items-end sm:items-center px-2'>
+            <div className='w-full sm:w-auto'>
               <SearchInput />
             </div>
-            <button className='mx-4 hover:ring-1 hover:ring-brand-primary border-gray-300 cursor-pointer bg-white text-black px-3 p-2 flex items-center justify-center hover:from-45% from-65% w-fit rounded-full font-medium'>
+           <div className='flex my-2 justify-end'>
+           <button className='mx-4 hover:ring-1 hover:ring-brand-primary border-gray-300 cursor-pointer bg-white text-black px-3 p-2 flex items-center justify-center hover:from-45% from-65% w-fit rounded-full font-medium'>
               <FilterIcon w='20' h='20' className='' />
             </button>
 
             <Button name="Add Server" onClick={() => setShowModal(true)} />
+           </div>
           </div>
         </div>
 

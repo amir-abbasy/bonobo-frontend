@@ -28,7 +28,7 @@ function Domains() {
             <div className='flex lg:flex-row justify-between items-center px-4 sm:px-0'>
                <div>
                <h1 className='font-medium text-2xl mt-8 '>Domains</h1>
-               <p className='sm:mb-12 text-sm mt-2'>{contacts.length} Domains</p>
+               <p className='sm:mb-12 text-sm mt-2'>{contacts?.length} Domains</p>
                </div>
                 <div>
                     <Button name="Create Campaign" onClick={() => null} />
