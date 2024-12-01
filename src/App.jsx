@@ -1,5 +1,11 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+
+import Login from "./pages/auth/login.jsx";
+import Signup from "./pages/auth/signup.jsx";
+import ForgotPassword from "./pages/auth/forgot-password.jsx";
+
+
 import Dashboard from "./pages/dashboard";
 import Campaigns from "./pages/campaigns";
 import CreateCampaign from "./pages/campaigns/create-campaign";
@@ -26,6 +32,9 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Dashboard />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/campaigns" element={<Campaigns />} />
         <Route path="/create-campaign" element={<CreateCampaign />} />
 

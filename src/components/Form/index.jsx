@@ -11,7 +11,7 @@ import { twMerge } from 'tailwind-merge'
 /////////////////////////////////////
 
 // DynamicForm Component
-const DynamicForm = ({ data, onSubmit, itemClassName, containerClass: globalContainerClass, label: showLabel, labelClassName, submitClassName, className: globalClassName, submitName = 'submit', submitButton }) => {
+const DynamicForm = ({ data, onSubmit, itemClassName, containerClass: globalContainerClass, label: showLabel, labelClassName, submitClassName, className: globalClassName, submitName = 'submit', submitButton, submitContainerclassName}) => {
     // Dynamically create the Joi validation schema based on formData
     const validationSchema = Joi.object(
         data.reduce((schema, field) => {
@@ -122,7 +122,7 @@ const DynamicForm = ({ data, onSubmit, itemClassName, containerClass: globalCont
                 );
             })}
 
-            <div className='w-full flex justify-end'
+            <div className={twMerge("w-full flex justify-end", submitContainerclassName)}
                 onClick={submitButton ? handleSubmit(handleFormSubmit) : null}
                 type="submit"
             >

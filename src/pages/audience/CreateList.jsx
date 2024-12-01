@@ -2,89 +2,8 @@ import React from 'react';
 import { useState } from 'react'
 import { Layout, DropDown, Button, Modal, SearchInput } from '../../components'
 import DynamicForm from '../../components/Form';
-
 import Joi from 'joi';
-import { SettingIcon, TemplateIcon } from '../../components/Icons';
 import Contacts from './Contacts';
-
-
-const formData = [
-  {
-    type: 'text',
-    name: 'Campaign Name',
-    placeholder: 'Campaign Name',
-    // label: 'SES Name',
-    validation: Joi.string().min(3).max(30).required().messages({
-      'string.empty': 'SES Name is required',
-      'string.min': 'SES Name must be at least 3 characters long',
-      'string.max': 'SES Name must be at most 30 characters long',
-    }),
-    // layout: 'row',
-    className: "",
-    containerClass: "",
-    // showLabel: false
-  },
-  {
-    type: 'email',
-    name: 'Subject Line',
-    label: 'Subject Line',
-    placeholder: 'Subject Line',
-    validation: Joi.string().required().messages({
-      'string.empty': 'Subject Line',
-      // 'string.email': 'Subject Line must be a valid email address',
-    }),
-    layout: 'row',
-  },
-  {
-    type: 'select',
-    name: 'Type',
-    label: 'Type',
-    options: [
-      { value: 'SMTP ', title: 'SMTP' },
-      { value: 'API', title: 'API' },
-    ],
-    validation: Joi.string().required().messages({
-      'string.empty': 'Type is required',
-    }),
-    render: (field) => {
-      return <div className='w-full'>
-        <label className={`text-gray-600 font-medium  text-sm`}>{field.name}</label>
-        <DropDown input={field} data={field.options} onSelect={_ => {
-          // console.log({ _ });
-        }}
-          value={field.value}
-        // classNameContainer="w-full"
-        />
-        <p className='text-red-500 font-normal text-xs mt-1'>{field.error?.message}</p>
-      </div>
-    },
-  },
-  {
-    type: 'select',
-    name: 'Sender name ',
-    label: 'Sender name',
-    placeholder: 'Sender name',
-    options: [
-      { value: 'amirabbasyk@gmail.com ', title: 'amirabbasyk@gmail.com' },
-      { value: 'maadanabbasy@gmail.com', title: 'maadanabbasy@gmail.com' },
-    ],
-    validation: Joi.string().required().messages({
-      'string.empty': 'Sender is required',
-    }),
-    render: (field) => {
-      return <div className='w-full mt-6'>
-        <label className={`text-gray-600 font-medium  text-sm`}>{field.name}</label>
-        <DropDown input={field} data={field.options} onSelect={_ => {
-          // console.log({ _ });
-        }}
-          value={field.value}
-        // classNameContainer="w-full"
-        />
-        <p className='text-red-500 font-normal text-xs mt-1'>{field.error?.message}</p>
-      </div>
-    },
-  },
-];
 
 
 const sections = ['List type', 'Upload', 'Map', 'Confirm']
@@ -116,8 +35,6 @@ function Index() {
           </div>
         })}
       </div>
-
-
 
 
 
@@ -175,6 +92,7 @@ function Index() {
             className="sm:w-1/2 mt-12"
             submitClassName="button-primary w-full"
             submitName="Save & Continue"
+            submitButton={()=> null}
           />
 
         </div>
