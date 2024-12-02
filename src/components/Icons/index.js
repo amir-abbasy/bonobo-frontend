@@ -19,4 +19,6 @@ export { default as FilterIcon } from './FilterIcon';
 export { default as SearchIcon } from './SearchIcon';
 export { default as CloseIcon } from './CloseIcon';
 export { default as StarIcon } from './StarIcon';
+export { default as DirectionIcon } from './DirectionIcon';
+export { default as PlusIcon } from './PlusIcon';
 

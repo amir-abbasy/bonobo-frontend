@@ -7,13 +7,14 @@ import { CalendarIcon } from '../../components/Icons'
 import Profile from './Profile'
 import UsersTable from './UsersTable'
 import Domains from './Domains'
+import AddServer from '../automation'
 
 const tabs = ["Profile", "Account", "Users", "Billing", "Mail Servers", "Email Verification"]
 
 function Index() {
     const nav = useNavigate()
     const { tab } = useParams()
-    const [activeTtab, setActiveTab] = useState(tabs.indexOf(tab))
+    const [activeTab, setActiveTab] = useState(tabs.indexOf(tab))
     
 
     return (
@@ -25,17 +26,18 @@ function Index() {
                         <button
                             onClick={() => setActiveTab(tabIdx)}
                             aria-current="page"
-                            className={`${activeTtab == tabIdx ? 'text-brand-primary bg-brand-primary/5 border-b border-brand-primary' : 'text-black'} inline-block px-12 p-4 font-normal  active _dark:bg-gray-800 _dark:text-blue-500`}>{tab}</button>
+                            className={`${activeTab == tabIdx ? 'text-brand-primary bg-brand-primary/5 border-b border-brand-primary' : 'text-black'} inline-block px-12 p-4 font-normal  active _dark:bg-gray-800 _dark:text-blue-500`}>{tab}</button>
                     </li>
                 })}
 
             </ul>
         
             {/* TABS BODY */}
-            {activeTtab == 0 && <Profile />}
-            {activeTtab == 1 && <UsersTable />}
+            {activeTab == 0 && <Profile />}
+            {activeTab == 1 && <UsersTable />}
+            {activeTab == 4 && <AddServer />}
             {/* ...other tabs here */}
-            {!activeTtab.toString().match('01') && <Domains />}
+            {/* {!activeTab.toString().match('01') && <Domains />} */}
 
 
         </Layout>

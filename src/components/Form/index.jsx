@@ -11,7 +11,7 @@ import { twMerge } from 'tailwind-merge'
 /////////////////////////////////////
 
 // DynamicForm Component
-const DynamicForm = ({ data, onSubmit, itemClassName, containerClass: globalContainerClass, label: showLabel, labelClassName, submitClassName, className: globalClassName, submitName = 'submit', submitButton, submitContainerclassName}) => {
+const DynamicForm = ({ data, onSubmit, itemClassName, containerClass: globalContainerClass, label: showLabel, labelClassName, submitClassName, className: globalClassName, submitName = 'submit', submitButton, submitContainerclassName, buttonRef=null}) => {
     // Dynamically create the Joi validation schema based on formData
     const validationSchema = Joi.object(
         data.reduce((schema, field) => {
@@ -71,7 +71,7 @@ const DynamicForm = ({ data, onSubmit, itemClassName, containerClass: globalCont
                             <select
                                 {...register(name)}
                                 {...rest}
-                                className={twMerge(`border bg-white border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 ${className}`)}
+                                className={twMerge(`w-full my-8 rounded-xl py-2 outline-none border border-brand-background hover:border-brand-primary focus:border-brand-primary placeholder:text-xs transition-all duration-200 ${className}`)}
                             >
                                 {options?.map((option, optIndex) => (
                                     <option key={optIndex} value={option.value}>
@@ -127,6 +127,7 @@ const DynamicForm = ({ data, onSubmit, itemClassName, containerClass: globalCont
                 type="submit"
             >
                 {submitButton ? submitButton?.() : <button
+                    ref={buttonRef}
                     type="submit"
                     className={twMerge(`w-full bg-blue-500 text-white rounded px-4 py-2 mt-4 hover:bg-blue-600 active:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 transition-colors`, submitClassName)}
                 >

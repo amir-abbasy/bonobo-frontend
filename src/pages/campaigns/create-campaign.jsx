@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { useState } from 'react'
 import { Layout, DropDown, Button, Modal, SearchInput } from '../../components'
 import DynamicForm from '../../components/Form';
@@ -94,13 +94,28 @@ function Index() {
   const [activeSection, setActiveSection] = useState(0) // choose_contacts, preview_campaign
   const [showModal, setShowModal] = useState(false)
   const nav = useNavigate()
+  const childButtonRef = useRef(null);
 
-
+  const handleParentButtonClick = () => {
+    if (childButtonRef.current) {
+      childButtonRef.current.click();
+    }
+  };
 
   // Submit Handler
   const handleFormSubmit = (formValues) => {
     console.log('Form Data:', formValues);
+    // if(valid){
+    nextTab()
+    // }
   };
+
+
+  const nextTab = () => {
+    if (activeSection < sections.length - 1) {
+      setActiveSection(activeSection + 1)
+    }
+  }
 
   return (
     <div className='mt-10 sm:mt-20 sm:px-12 xl:px-24 2xl:px-48 pb-24 min-h-screen ' >
@@ -135,9 +150,10 @@ function Index() {
             // itemClassName="border-red-400 bg-brand-background "
             // label={false}
             className="w-full"
-            submitClassName="button-primary px-8 hidden"
+            submitClassName="button-primary px-8 invisible"
             submitName="Save & Continue"
-            submitButton={_ => null}
+            // submitButton={_ => null}
+            buttonRef={childButtonRef}
           />
 
 
@@ -178,10 +194,10 @@ function Index() {
 
       {sections[activeSection] == sections[1] && <div className='xl:flex flex-col sm:flex-row justify-between  gap-x-8'>
         <div className='flex-1 px-2 sm:px-0'>
-          <div className='flex justify-between flex-wrap'> 
+          <div className='flex justify-between flex-wrap'>
             <div className='flex justify-between gap-x-4'>
-            <Button name='Contact Lists' />
-            <Button name='Segments' className='bg-none border border-slate-300 hover:bg-slate-300' />
+              <Button name='Contact Lists' />
+              <Button name='Segments' className='bg-none border border-slate-300 hover:bg-slate-300' />
             </div>
             <SearchInput className="w-full" />
           </div>
@@ -342,7 +358,7 @@ function Index() {
 
 
 
-      <div className='bg-white p-8 rounded-t-3xl flex justify-between fixed bottom-0 right-0 left-0 mx-4 sm:mx-44'>
+      <div className='bg-white p-8 rounded-t-3xl flex justify-between fixed bottom-0 right-0 left-0 px-4 sm:px-44 border'>
         <Button className="p-3 px-8 bg-none hover:bg-slate-200 text-slate-600 border" name='Cancel'
           onClick={_ => {
             if (activeSection == 0) return
@@ -350,11 +366,7 @@ function Index() {
           }}
         />
         <Button className="p-3 px-8 text-white" name='Save & Continue'
-          onClick={_ => {
-            if (activeSection < sections.length - 1) {
-              setActiveSection(activeSection + 1)
-            }
-          }}
+          onClick={_ => handleParentButtonClick()}
         />
       </div>
 
