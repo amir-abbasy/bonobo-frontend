@@ -1,11 +1,13 @@
 import React, { useRef } from 'react';
 import { useState } from 'react'
+import Joi from 'joi';
+import { useNavigate } from 'react-router-dom';
+
+import { CalendarIcon, CloseIcon, DirectionIcon, SettingIcon, TemplateIcon } from '../../components/Icons';
 import { Layout, DropDown, Button, Modal, SearchInput } from '../../components'
 import DynamicForm from '../../components/Form';
-
-import Joi from 'joi';
-import { CloseIcon, SettingIcon, TemplateIcon } from '../../components/Icons';
-import { useNavigate } from 'react-router-dom';
+import mock_country from '../../assets/data/mock_country.json'
+import RichTextEditor from './RichTextEditor '
 
 
 const formData = [
@@ -93,14 +95,11 @@ function Index() {
   const [options, setOpstion] = useState({ value: 'value', data: [{ title: 'Amir', value: 'amir' }, { title: 'Amir2', value: 'amir2' }] })
   const [activeSection, setActiveSection] = useState(0) // choose_contacts, preview_campaign
   const [showModal, setShowModal] = useState(false)
+  const [sheduleModal, setSheduleModal] = useState(false)
+
   const nav = useNavigate()
   const childButtonRef = useRef(null);
 
-  const handleParentButtonClick = () => {
-    if (childButtonRef.current) {
-      childButtonRef.current.click();
-    }
-  };
 
   // Submit Handler
   const handleFormSubmit = (formValues) => {
@@ -110,12 +109,32 @@ function Index() {
     // }
   };
 
+  console.log(activeSection);
+
+  const proceed = () => {
+    if (activeSection == 0) {
+      if (childButtonRef.current) {
+        childButtonRef.current.click();
+      }
+    }
+
+    if (activeSection == 1) {
+      nextTab()
+    }
+
+
+    if (activeSection == 2) {
+      window.alert('confirm')
+    }
+
+  }
 
   const nextTab = () => {
     if (activeSection < sections.length - 1) {
       setActiveSection(activeSection + 1)
     }
   }
+
 
   return (
     <div className='mt-10 sm:mt-20 sm:px-12 xl:px-24 2xl:px-48 pb-24 min-h-screen ' >
@@ -364,17 +383,27 @@ function Index() {
             if (activeSection == 0) return
             setActiveSection(activeSection - 1)
           }}
+          iconLeft={() => <DirectionIcon color="#444" className='mr-4  -scale-100' />}
+
         />
-        <Button className="p-3 px-8 text-white" name='Save & Continue'
-          onClick={_ => handleParentButtonClick()}
-        />
+
+        <div className='flex'>
+          {activeSection == 2 && <Button className="p-3 px-8 bg-none hover:bg-slate-200 text-slate-600 border mr-4" name='Schedule'
+            onClick={_ => setSheduleModal(true)}
+          />}
+          <Button className="p-3 px-8 text-white" name='Save & Continue'
+            onClick={_ => proceed()}
+            iconRight={() => <DirectionIcon color="white" className='ml-4' />}
+
+          />
+        </div>
       </div>
 
 
 
 
 
-
+      {/* TEMPLATES MODAL */}
 
       <Modal visible={showModal} onClose={() => setShowModal(false)} >
         <section className='p-8 '>
@@ -398,6 +427,43 @@ function Index() {
           </div>
 
           {/* <Button className="bg-none border text-slate-600 hover:bg-slate-200" name="Cancel" onClick={() => setShowModal(false)} /> */}
+        </section>
+      </Modal>
+
+
+
+
+      {/* SHEDULE MODAL */}
+
+      <Modal visible={sheduleModal} onClose={() => setSheduleModal(false)}
+        title="Shedule Campaign"
+        className="w-fit lg:w-1/2 xl:w-1/3"
+      >
+        <section className='p-8'>
+          <div class="border flex py-4 items-center rounded-lg px-6">
+            <CalendarIcon className=' mr-6' />
+            <div>
+              <p>Scheduled at *</p>
+              <input type='date' className='font-semibold' value={"2011-09-29"} />
+            </div>
+          </div>
+
+          <div class="border flex py-4 items-center rounded-lg px-6 mt-4">
+            <CalendarIcon className=' mr-6' />
+            <div className='w-full'>
+              <p>TimeZone *</p>
+              <DropDown value={"(GMT+00:00)Africa/Abidjan"}
+                // data={new Array(100).fill({ title: "(GMT+00:00)Africa/Abidjan", value: "(GMT+00:00)Africa/Abidjan" })}
+                data={mock_country.map(_ => ({ title: _.name, value: _.code }))}
+                ClassNameTitle="font-semibold"
+                search={true}
+              />
+            </div>
+          </div>
+          <div className='flex gap-4 mt-4'>
+            <Button name="Schedule" />
+            <Button className="bg-none border text-slate-600 hover:bg-slate-200" name="Cancel" onClick={() => setSheduleModal(false)} />
+          </div>
         </section>
       </Modal>
 

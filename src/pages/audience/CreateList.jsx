@@ -30,7 +30,6 @@ function Index() {
     // }
   };
 
-  console.log(activeSection);
 
   const proceed = () => {
     if (activeSection == 0) {
@@ -61,9 +60,6 @@ function Index() {
 
   return (
     <Layout className='pt-8 px-2 sm:px-0  flex flex-col relative pb-32 bg-white' >
-
-
-
 
 
       <div className='flex  items-center justify-between  '>

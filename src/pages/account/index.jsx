@@ -18,7 +18,7 @@ function Index() {
     
 
     return (
-        <Layout className='pt-8 bg-white' >
+        <Layout className='sm:px-4 sm:pt-8 bg-white' >
             {/* Tabs */}
             <ul class="flex flex-wrap text-center border-b border-gray-200 _dark:border-gray-700 _dark:text-gray-400">
                 {tabs.map((tab, tabIdx) => {

@@ -123,24 +123,33 @@ function Index() {
         name: "Maadan"
     }
     return (
-        <div>
-            <div className='flex flex-col lg:flex-row items-center mb-12 mt-8'>
-                <div className='size-9 bg-gradient-to-r from-brand-dark to-brand-primary rounded-full text-white flex '>
-                    <p className='m-auto'>{user?.name?.[0]}</p>
+        <div className='flex flex-col sm:flex-row mt-8 gap-8'>
+            <div className='bg-white rounded-3xl px-4 sm:w-1/2'>
+                <div className='flex flex-col lg:flex-row items-center mb-12 '>
+                    <div className='size-9 bg-gradient-to-r from-brand-dark to-brand-primary rounded-full text-white flex '>
+                        <p className='m-auto'>{user?.name?.[0]}</p>
+                    </div>
+                    <h1 className='font-medium text-2xl ml-4'>Profile</h1>
                 </div>
-                <h1 className='font-medium text-2xl ml-4'>Profile</h1>
-            </div>
 
-            <div className='bg-white rounded-3xl'>
+
                 <DynamicForm
                     data={formData}
                     onSubmit={handleFormSubmit}
-                // itemClassName="border-red-400 bg-brand-background "
-                // label={false}
-                // containerClass="w-full"
-                // className="space-between"
+                    submitName='Save'
+                    // itemClassName="border-red-400 bg-brand-background "
+                    // label={false}
+                    // className="space-between"
+                    submitClassName="w-fit"
                 />
             </div>
+
+            <div className='bg-white rounded-3xl px-4 sm:w-1/2'>
+                <Button name="Log out" className='bg-none border border-red-400 text-red-400' />
+                <p className='mt-4'><a href="" >Delete Account</a></p>
+            </div>
+
+
         </div>
     )
 }

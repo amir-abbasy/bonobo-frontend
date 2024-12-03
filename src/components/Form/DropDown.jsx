@@ -19,7 +19,7 @@ import { ArrawIcon } from '../Icons'
 const DropDown = ({
   input,
   title,
-  data,
+  data: _data,
   className,
   value,
   placeholder = "Select",
@@ -31,15 +31,18 @@ const DropDown = ({
   picker = null,
   header,
   footer,
-  noLabel = false
+  noLabel = false,
+  search: _search
 }) => {
 
-  const [isOpen, setOpen] = useState(false)
 
+  const [isOpen, setOpen] = useState(false)
+  const [data, setDdata] = useState(_data)
+  const [search, setSearch] = useState()
   const wrapperRef = useRef(null);
 
-
   useEffect(() => {
+
     function handleClickOutside(event) {
       if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
         setOpen(false)
@@ -49,7 +52,22 @@ const DropDown = ({
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
+
+
   }, [wrapperRef]);
+
+  useEffect(() => {
+    if (_search && data) {
+      const filterData = data.filter(item => {
+        return item.title && typeof item.title === 'string' && item.title.toLowerCase().match(search);
+      });
+      setDdata(filterData)
+      if (search == '') {
+        setDdata(_data)
+      }
+    }
+
+  }, [search])
 
 
 
@@ -60,9 +78,7 @@ const DropDown = ({
   //   });
   // }, [])
 
-
-
-  return <div className={`relative cursor-pointer ${classNameContainer} ${disabled ? 'opacity-40' : ''}`} ref={wrapperRef}>
+  return <div className={twMerge(`relative cursor-pointer`, classNameContainer, disabled ? 'opacity-40' : '')} ref={wrapperRef}>
     {/* custom picker */}
     {picker ? <div onClick={() => !disabled && setOpen(!isOpen)}>{picker?.()}</div> :
       <>
@@ -70,12 +86,11 @@ const DropDown = ({
         <div className={twMerge(`flex justify-between items-center rounded-xl px-3 py-2 outline-none border border-brand-background hover:border-brand-primary focus:border-brand-primary w-full ${className}`)}
           onClick={() => !disabled && setOpen(!isOpen)}>
           <div className="flex gap-1">
-
             {data?.find((item) => item.value == value)?.icon && <img
               className="rounded-2xl w-6 h-6 mx-2"
               src={data?.find((item) => item.value == value)?.icon}
             />}
-            {!noLabel && <p className="mr-2">{data?.find((item) => item.value == value)?.title ?? placeholder}</p>}
+            {!noLabel && <p className={twMerge('mr-2', ClassNameTitle)}>{data?.find((item) => item.value == value)?.title ?? placeholder}</p>}
           </div>
           <ArrawIcon className={`${isOpen ? '-rotate-90' : 'rotate-90'} transition-all duration-300`} w={16} h={16} />
         </div>
@@ -86,6 +101,8 @@ const DropDown = ({
 
     {isOpen && <div className="drop-down absolute bg-white text-black left-0  w-full rounded-md shadow-lg ring-0 black ring-opacity-5 focus:outline-none text-textColor z-[900]  max-h-[40vh] overflow-y-scroll" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
       {header && header?.()}
+      {_search && <input className='w-full p-2 border-0 border-b outline-none' onChange={(e) => setSearch(e.target.value)} value={search} placeholder='Search...' />}
+
 
       {data?.map((item, key) => {
         if (item?.hide) return

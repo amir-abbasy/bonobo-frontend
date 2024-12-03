@@ -5,6 +5,7 @@ import { Layout, DropDown, Button } from '../../components'
 import DynamicForm from '../../components/Form';
 import HeroCard from './HeroCard'
 import Joi from 'joi';
+import { useNavigate } from 'react-router-dom';
 
 
 const formData = [
@@ -44,10 +45,16 @@ const formData = [
 ];
 
 function login() {
-    const [options, setOpstion] = useState()
+    const [loading, setLoading] = useState()
+    const nav = useNavigate()
 
     const handleFormSubmit = (formValues) => {
+        setLoading(true)
         console.log('Form Data:', formValues);
+        setTimeout(() => {
+            setLoading(false)
+            nav('/dashboard')
+        }, 2000)
     };
 
     return (
@@ -73,8 +80,9 @@ function login() {
                         submitClassName="button-primary w-full"
                         // submitContainerclassName="justify-start"
                         submitName="Login"
+                        loading={loading}
                     />
-                     <div className='w-full '>
+                    <div className='w-full '>
                         <a href="/forgot-password" className='font-normal text-slate-700 text-sm'>Forgot your password?</a>
                     </div>
                 </div>

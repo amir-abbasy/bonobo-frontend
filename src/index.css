@@ -149,3 +149,6 @@ body {
 .chartjs-render-monitor {
   border: none !important;
 }
+
+.app_spinner{transform-origin:center;animation:spinner_rot .75s infinite linear}
+@keyframes spinner_rot{100%{transform:rotate(360deg)}}

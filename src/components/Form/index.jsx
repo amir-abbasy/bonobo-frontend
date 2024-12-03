@@ -3,6 +3,7 @@ import { Controller, useForm } from 'react-hook-form';
 import { joiResolver } from '@hookform/resolvers/joi';
 import Joi from 'joi';
 import { twMerge } from 'tailwind-merge'
+import Spinner from '../Spinner';
 
 ////////////  Author /////////////////
 
@@ -11,7 +12,7 @@ import { twMerge } from 'tailwind-merge'
 /////////////////////////////////////
 
 // DynamicForm Component
-const DynamicForm = ({ data, onSubmit, itemClassName, containerClass: globalContainerClass, label: showLabel, labelClassName, submitClassName, className: globalClassName, submitName = 'submit', submitButton, submitContainerclassName, buttonRef=null}) => {
+const DynamicForm = ({ data, onSubmit, itemClassName, containerClass: globalContainerClass, label: showLabel, labelClassName, submitClassName, className: globalClassName, submitName = 'submit', submitButton, submitContainerclassName, buttonRef = null, loading = false }) => {
     // Dynamically create the Joi validation schema based on formData
     const validationSchema = Joi.object(
         data.reduce((schema, field) => {
@@ -131,7 +132,7 @@ const DynamicForm = ({ data, onSubmit, itemClassName, containerClass: globalCont
                     type="submit"
                     className={twMerge(`w-full bg-blue-500 text-white rounded px-4 py-2 mt-4 hover:bg-blue-600 active:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 transition-colors`, submitClassName)}
                 >
-                    {submitName}
+                    {loading ? <Spinner w={20} h={20} /> : <p>{submitName}</p>}
                 </button>}
             </div>
 

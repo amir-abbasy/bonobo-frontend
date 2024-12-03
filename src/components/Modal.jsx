@@ -1,11 +1,12 @@
 import React from 'react'
 import Button from './Button'
+import { twMerge } from 'tailwind-merge'
 
-function Modal({ children, title = "Choose template", visible = false, onClose = _ => null }) {
+function Modal({ children, title = "Choose template", visible = false, onClose = _ => null, className }) {
     if (!visible) return
     return (
         <div id="default-modal" tabIndex="-1" aria-hidden="true" className='w-screen h-screen flex justify-center items-center absolute left-0 top-0 bg-black/20 z-50'>
-            <div class="relative p-4  max-h-full">
+            <div class={twMerge("relative p-4  max-h-full", className)}>
                 {/* Modal content */}
                 <div class="relative bg-white rounded-3xl shadow _dark:bg-gray-7000">
                     {/* Modal header */}
