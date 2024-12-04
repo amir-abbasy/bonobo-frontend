@@ -7,7 +7,7 @@ import { CalendarIcon, CloseIcon, DirectionIcon, SettingIcon, TemplateIcon } fro
 import { Layout, DropDown, Button, Modal, SearchInput } from '../../components'
 import DynamicForm from '../../components/Form';
 import mock_country from '../../assets/data/mock_country.json'
-import RichTextEditor from './RichTextEditor '
+import EmailBuilder from './EmailBuilder'
 
 
 const formData = [
@@ -96,6 +96,7 @@ function Index() {
   const [activeSection, setActiveSection] = useState(0) // choose_contacts, preview_campaign
   const [showModal, setShowModal] = useState(false)
   const [sheduleModal, setSheduleModal] = useState(false)
+  const [templateFrom, setTemplateFrom] = useState()
 
   const nav = useNavigate()
   const childButtonRef = useRef(null);
@@ -239,7 +240,7 @@ function Index() {
         <div className='flex-1'>
 
           {/* Rules */}
-          <div className='flex flex-col bg-white rounded-3xl p-8 mt-8 xl:mt-0 '>
+          <div className='flex flex-col bg-brand-background/50 rounded-3xl p-8 mt-8 xl:mt-0 '>
             <div className='flex items-center mb-4'>
               <SettingIcon />
               <h6 className='ml-2 font-semibold text-xl'>Rules</h6>
@@ -303,7 +304,7 @@ function Index() {
 
 
           {/* Template review */}
-          <div className='flex flex-col bg-white rounded-3xl p-8 mt-8  '>
+          <div className='flex flex-col bg-brand-background/50 rounded-3xl p-8 mt-8  '>
             <div className='flex items-center mb-4'>
               <TemplateIcon />
               <h6 className='ml-2 font-semibold text-xl'>Template review</h6>
@@ -404,7 +405,6 @@ function Index() {
 
 
       {/* TEMPLATES MODAL */}
-
       <Modal visible={showModal} onClose={() => setShowModal(false)} >
         <section className='p-8 '>
           <div class="text-center">
@@ -413,10 +413,12 @@ function Index() {
           </div>
 
           <div className='flex flex-col sm:flex-row text-center justify-center  gap-x-8 px-4 sm:px-32'>
-            {[{ name: 'Template Gallery', desc: 'Choose from ready to use templates', icon: 'https://app2.mailercloud.com/img/template-gallery.455c3d23.svg' },
-            { name: 'Richtext Editor', desc: 'Create simple emails Effortlessly', icon: 'https://app2.mailercloud.com/img/richtext-editor.2b2c95c8.svg' },
-            { name: 'Drag & Drop Builder', desc: 'Create a campaign by simple drag and drop', icon: 'https://app2.mailercloud.com/img/drag-drop-builder.5dc38ce3.svg' }].map((option, key) => {
-              return <div className='flex flex-col items-center cursor-pointer '>
+            {[{ id: 'from_gallery', name: 'Template Gallery', desc: 'Choose from ready to use templates', icon: 'https://app2.mailercloud.com/img/template-gallery.455c3d23.svg' },
+            { id: 'from_richtext', name: 'Richtext Editor', desc: 'Create simple emails Effortlessly', icon: 'https://app2.mailercloud.com/img/richtext-editor.2b2c95c8.svg' },
+            { id: 'from_drag_drop', name: 'Drag & Drop Builder', desc: 'Create a campaign by simple drag and drop', icon: 'https://app2.mailercloud.com/img/drag-drop-builder.5dc38ce3.svg' }].map((option, key) => {
+              return <div className='flex flex-col items-center cursor-pointer '
+                onClick={() => setTemplateFrom(option.id)}
+              >
                 <div className='my-4 border rounded-3xl p-10 size-44 hover:bg-slate-100' >
                   <img src={option.icon} />
                 </div>
@@ -434,7 +436,6 @@ function Index() {
 
 
       {/* SHEDULE MODAL */}
-
       <Modal visible={sheduleModal} onClose={() => setSheduleModal(false)}
         title="Shedule Campaign"
         className="w-fit lg:w-1/2 xl:w-1/3"
@@ -467,6 +468,21 @@ function Index() {
         </section>
       </Modal>
 
+
+
+      {/* Email Builder*/}
+      <Modal visible={templateFrom} onClose={() => setTemplateFrom(false)}
+        title="Email Builder"
+        className="w-screen h-screen p-0 rounded-none"
+      >
+        <section className='px-8'>
+          <EmailBuilder />
+          <div className='flex gap-4 mt-4'>
+            <Button name="Schedule" />
+            <Button className="bg-none border text-slate-600 hover:bg-slate-200" name="Cancel" onClick={() => setTemplateFrom(false)} />
+          </div>
+        </section>
+      </Modal>
 
     </div >
   )

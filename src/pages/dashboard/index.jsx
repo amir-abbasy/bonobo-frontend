@@ -1,11 +1,12 @@
 import React from 'react';
 import { useState } from 'react'
-import { Button, Layout, Select } from '../../components'
-import { ArrawIcon, CalendarIcon, CallIcon, MessageIcon, UsersIcon } from '../../components/Icons'
+import { Button, Layout, LucideIcon, Select } from '../../components'
+import { ArrawIcon, CalendarIcon, CallIcon, CampaignIcon, MessageIcon, UsersIcon } from '../../components/Icons'
 import LineChart from './LineChart';
 import StackedChart from './StackedChart';
 import { lineChartOption, lineChartNoAxisOption, generateRandomData } from '../../assets/data/chartData'
 import { useNavigate } from 'react-router-dom';
+import { HardDrive } from 'lucide-react';
 
 
 
@@ -41,30 +42,15 @@ function Index() {
       </div>
 
 
-
       <div className='bg-white grid grid-cols-2 lg:grid-cols-4 gap-4 justify-between rounded-t-3xl '>
-        {[{ name: 'Mail Sent ', count: 8, change: 66, icon: 'mail' },
-        { name: 'Campaigns', count: 3, change: 166, icon: 'campaign' },
-        { name: 'Subscribers', count: 56, change: 126, icon: 'users' },
-        { name: 'Unsubscribers ', count: 20, change: -36, icon: 'call' }].map((card, i) => {
-
-          let Icon = CallIcon
-          switch (card.icon) {
-            case 'campaign':
-              Icon = CalendarIcon
-              break;
-            case 'users':
-              Icon = UsersIcon
-              break;
-            case 'mail':
-              Icon = MessageIcon
-              break;
-          }
-
-
+        {[{ name: 'Mail Sent ', count: 8, change: 66, icon: 'MailCheck' },
+        { name: 'Campaigns', count: 3, change: 166, icon: 'Megaphone' },
+        { name: 'Subscribers', count: 56, change: 126, icon: 'UserPlus' },
+        { name: 'Unsubscribers ', count: 20, change: -36, icon: 'UserMinus' }].map((card, i) => {
           return <div key={'card_' + i} className={`${i > 0 ? 'border-l' : ''} border-b lg:border-b-0 flex-1 p-6 flex items-center justify-between`}>
             <div>
-              <Icon w={40} h={40} className='strock-gray-500 opacity-20' />
+              {/* <Icon w={40} h={40} className='strock-gray-500 opacity-20' /> */}
+              <LucideIcon name={card.icon}  size={36}  color="#6b728040" />
               <div className='mt-2 flex items-center'>
                 <p className='font-medium text-gray-800'>{card.name}</p>
                 {card?.change && <span className='ml-2 bg-brand-primary text-xs font-bold rounded-full text-white px-2 p-1'>{card.change}%</span>}
@@ -77,32 +63,16 @@ function Index() {
           </div>
         })}
       </div>
-
-
-
       <div className='bg-white grid grid-cols-2 lg:grid-cols-4 gap-4 justify-between rounded-b-3xl border-t'>
-        {[{ name: 'Daily Sending Limit', count: 4, change: 66, icon: 'campaign' },
-        { name: 'Contact Lists', count: 721, change: 166, icon: 'call' },
-        { name: 'Total Subscribers ', count: 1200, change: 126, icon: 'users' },
-        { name: 'Email Servers', count: 2154, change: -36, icon: 'mail' }].map((card, i) => {
-
-          let Icon = CallIcon
-          switch (card.icon) {
-            case 'campaign':
-              Icon = CalendarIcon
-              break;
-            case 'users':
-              Icon = UsersIcon
-              break;
-            case 'mail':
-              Icon = MessageIcon
-              break;
-          }
-
+        {[{ name: 'Daily Sending Limit', count: 4, change: 66, icon: 'MailWarning' },
+        { name: 'Contact Lists', count: 721, change: 166, icon: 'ContactRound' },
+        { name: 'Total Subscribers ', count: 1200, change: 126, icon: 'UsersRound' },
+        { name: 'Email Servers', count: 2154, change: -36, icon: 'HardDrive' }].map((card, i) => {
 
           return <div key={'card__' + i} className={`${i > 0 ? 'border-l ' : ''} border-b lg:border-b-0 flex-1 p-6 flex items-center justify-between`}>
             <div>
-              <Icon w={40} h={40} className='strock-gray-500 opacity-20' />
+              {/* <Icon w={40} h={40} className='strock-gray-500 opacity-20' /> */}
+              <LucideIcon name={card.icon}  size={36} color="#6b728040"  />
               <div className='mt-2 flex items-center'>
                 <p className='font-medium text-gray-800'>{card.name}</p>
                 {card?.change && <span className='ml-2 bg-brand-primary text-xs font-bold rounded-full text-white px-2 p-1'>{card.change}%</span>}
@@ -115,8 +85,7 @@ function Index() {
           </div>
         })}
       </div>
-
-
+      
       <div className='flex flex-col lg:flex-row gap-x-8 overflow-scroll'>
         <div className='flex-1'>
           <h1 className='font-medium text-xl mt-8 mb-4'>Sent Mail Analystics</h1>

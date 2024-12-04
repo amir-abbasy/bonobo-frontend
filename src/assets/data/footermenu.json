@@ -7,12 +7,12 @@
             {
                 "name": "Mail Servers",
                 "path": "/account/Mail Servers",
-                "icon": ""
+                "icon": "HardDrive"
             },
             {
                 "name": "Email Verification",
                 "path": "/account/Email Verification",
-                "icon": ""
+                "icon": "ShieldCheck"
             }
         ]
     },
@@ -24,22 +24,27 @@
             {
                 "name": "Profile",
                 "path": "/account/Profile",
-                "icon": ""
+                "icon": "UserRoundPen"
             },
             {
                 "name": "Account",
                 "path": "/account/Account",
-                "icon": ""
+                "icon": "UserCog"
             },
             {
                 "name": "Users",
                 "path": "/account/Users",
-                "icon": ""
+                "icon": "Users"
             },
             {
                 "name": "Billing",
                 "path": "/account/Billing",
-                "icon": ""
+                "icon": "ReceiptEuro"
+            },
+            {
+                "name": "Log out",
+                "path": null,
+                "icon": "LogOut"
             }
         ]
     }

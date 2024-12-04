@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { AppIcon, CalendarIcon, UsersIcon, CloseIcon, TemplateIcon, SettingIcon, CampaignIcon, AutoIcon, ResponderIcon, ArrawIcon } from './Icons'
+import { LucideIcon } from '../components'
 import { Link } from 'react-router-dom'
 import menu from '../assets/data/menu.json'
 import footermenu from '../assets/data/footermenu.json'
@@ -161,15 +162,6 @@ function Drawer() {
                 <ul className='flex flex-col space-y-8   items-start  whitespace-nowrap '>
                     {(activeMenu == 'Configuration' ? footermenu[0]['submneu'] : footermenu[1]['submneu']).map((page, key) => {
                         let hasSubmenu = page?.submneu
-                        let Icon = CalendarIcon
-                        switch (page.path) {
-                            case '/configuration':
-                                Icon = SettingIcon
-                                break;
-                            default:
-                                Icon = UsersIcon
-                                break;
-                        }
                         return <li key={key}
                             onClick={() => {
                                 if (!hasSubmenu) {
@@ -181,7 +173,8 @@ function Drawer() {
                             }}
                         ><Link to={hasSubmenu ? null : page.path}>
                                 <div className={`icon-group flex `}>
-                                    <Icon color={activeMenu == page.name ? primary : 'black'} />
+                                    {/* <Icon color={activeMenu == page.name ? primary : 'black'} /> */}
+                                    <LucideIcon size={20} name={page.icon} color={page.icon == 'LogOut' ? '#ed2b28' : "#6b7280"} />
                                     <div className=''><span className={`inline-block font-normal ml-4 text-black   hover:text-brand-primary ${activeMenu == page.name ? 'text-brand-primary' : ''}`}>{page.name}</span>
                                     </div>
                                 </div>

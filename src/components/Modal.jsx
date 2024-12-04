@@ -1,5 +1,4 @@
 import React from 'react'
-import Button from './Button'
 import { twMerge } from 'tailwind-merge'
 
 function Modal({ children, title = "Choose template", visible = false, onClose = _ => null, className }) {
