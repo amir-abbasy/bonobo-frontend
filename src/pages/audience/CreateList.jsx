@@ -9,7 +9,53 @@ import CopyPasteSection from './upload/CopyPaste'
 import AddIndividualSection from './upload/AddIndividual'
 import { CloseIcon, DirectionIcon, PlusIcon } from '../../components/Icons';
 import { useNavigate } from 'react-router-dom';
+import MatchColumnContactTable from './TableMatchColumnContact'
 
+
+const formData = [
+  {
+    type: 'select',
+    name: 'Field type',
+    label: 'Field type',
+    options: [
+      { value: 'text', label: 'Text' },
+      { value: 'number', label: 'Number' },
+      { value: 'textarea', label: 'Textarea' },
+      { value: 'date', label: 'Date' },
+    ],
+    validation: Joi.string().required().messages({
+      'string.empty': 'Field type is required',
+    }),
+  },
+  {
+    type: 'email',
+    name: 'email',
+    label: 'Email',
+    validation: Joi.string().email({ tlds: { allow: false } }).required().messages({
+      'string.empty': 'Email is required',
+      'string.email': 'Email must be a valid email address',
+    }),
+  },
+  {
+    type: 'tel',
+    name: 'phone',
+    label: 'Phone Number',
+    validation: Joi.string().pattern(/^[0-9]{10}$/).messages({
+      'string.pattern.base': 'Phone number must be 10 digits',
+    }),
+    // layout: 'row'
+  },
+  {
+    type: 'textarea',
+    name: 'password',
+    label: 'Password',
+    validation: Joi.string().min(6).required().messages({
+      'string.empty': 'Password is required',
+      'string.min': 'Password must be at least 6 characters long',
+    }),
+  },
+
+];
 
 const sections = ['List type', 'Upload', 'Map', 'Confirm']
 
@@ -18,6 +64,8 @@ function Index() {
   const [activeSection, setActiveSection] = useState(0) // choose_contacts, preview_campaign
   const [uploadSection, setUploadSection] = useState() // upload, copy_pase, individual
   const [showModal, setShowModal] = useState(false)
+  const [showModalCreateProperty, setShowModalCreateProperty] = useState(false)
+
   const nav = useNavigate()
 
   const childButtonRef = useRef(null);
@@ -189,14 +237,41 @@ function Index() {
       {sections[activeSection] == sections[2] && <div className='bg-white rounded-3xl p-4 sm:p-16 flex flex-col min-h-[60vh]'>
         <h5 className='font-bold text-xl mb-4'>Add Tag</h5>
         <p className='text-sm'>Organize your contacts with our contact tagging feature. Use words or phrases that make sense to you to label or categorize your contacts based on shared characteristics or behaviours.</p>
-        <Button className='bg-none border text-brand-primary mb-10 my-6' name='Add Tag'
-          iconLeft={() => <PlusIcon color='#4579ff' w="20" h="20" className='mr-2' />}
+
+
+
+        <DropDown
+          // title="Choose crypto token"
+          data={new Array(6).fill({ title: 'sad', value: '10' })}
+          picker={() => {
+            return <Button className='bg-none border text-brand-primary  hover:bg-brand-primary/30' name='Add Tag'
+              iconLeft={() => <PlusIcon color='#4579ff' w="20" h="20" className='mr-2' />}
+            />
+          }}
+          // value={options.value}
+          placeholder="Select"
+          onSelect={(value) => setOption((prev) => ({ ...prev, value }))}
+          renderItem={(item) => (
+            <div>
+              <p className="text-xl">{item.title}</p>
+            </div>
+          )}
+          classNameContainer=" mb-10 my-6 w-full sm:w-1/3"
+          search={true}
+          footer={() => (
+            <div className='bg-brand-primary/10 py-3'>
+              <Button className='bg-none  text-brand-primary' name='Add new field' onClick={() => setShowModalCreateProperty(true)}
+                iconLeft={() => <PlusIcon color='#4579ff' w="20" h="20" className='mr-2' />}
+              />
+            </div>
+          )}
         />
+
 
         <h5 className='font-bold text-xl mb-8'>Match column label to contact information</h5>
         <p className='text-sm'>Map each column header below to a corresponding contact attribute. Some headers may already be mapped based on their names, but any unmapped headers can be manually assigned to an attribute using the dropdown menu.</p>
 
-        <Contacts />
+        <MatchColumnContactTable  />
       </div>}
 
 
@@ -223,11 +298,7 @@ function Index() {
       </div>
 
 
-
-
-
-
-
+      {/* Choose Your Template MODAL */}
       <Modal visible={showModal} onClose={() => setShowModal(false)} >
         <section className='p-8 '>
           <div class="text-center">
@@ -250,6 +321,36 @@ function Index() {
           </div>
 
           <Button className="bg-none border text-slate-600 hover:bg-slate-200" name="Cancel" onClick={() => setShowModal(false)} />
+        </section>
+      </Modal>
+
+
+      {/* MODAL NEW PROPERTY */}
+      <Modal visible={showModalCreateProperty}
+        title=""
+        onClose={() => setShowModalCreateProperty(false)}
+        containerClassName="justify-end "
+        className="h-screen w-full sm:w-1/3"
+      >
+        <section className='px-8  pb-8'>
+          <h3 className='text-2xl font-normal'>Create new property</h3>
+
+
+          <DynamicForm
+            data={formData}
+            onSubmit={handleFormSubmit}
+            // itemClassName="border-red-400 bg-brand-background "
+            // label={false}
+            className="space-between  mt-8 bg-transparent mb-4 w-full"
+            submitClassName="button-primary w-full"
+            // submitContainerclassName="justify-start"
+            submitName="Create"
+          />
+
+          {/* <div className='flex gap-x-8'>
+            <Button className="text-white" name="Create" onClick={() => setShowModal(false)} />
+            <Button className="bg-none border text-slate-600 hover:bg-slate-200" name="Clear" onClick={() => setShowModal(false)} />
+          </div> */}
         </section>
       </Modal>
 

@@ -1,10 +1,10 @@
 import React from 'react'
 import { twMerge } from 'tailwind-merge'
 
-function Modal({ children, title = "Choose template", visible = false, onClose = _ => null, className }) {
+function Modal({ children, title = "Choose template", visible = false, onClose = _ => null, className, containerClassName }) {
     if (!visible) return
     return (
-        <div id="default-modal" tabIndex="-1" aria-hidden="true" className='w-screen h-screen flex justify-center items-center absolute left-0 top-0 bg-black/20 z-50'>
+        <div id="default-modal" tabIndex="-1" aria-hidden="true" className={twMerge('w-screen h-screen flex justify-center items-center absolute left-0 top-0 bg-black/20 z-50', containerClassName)}>
             <div class={twMerge("relative p-4  max-h-full", className)}>
                 {/* Modal content */}
                 <div class="relative bg-white rounded-3xl shadow _dark:bg-gray-7000">
