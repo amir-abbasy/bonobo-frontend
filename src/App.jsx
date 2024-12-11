@@ -13,6 +13,8 @@ import CreateCampaign from "./pages/campaigns/create-campaign";
 import Audience from "./pages/audience";
 import AudienceAnalytics from "./pages/audience/analytics";
 import CreateList from "./pages/audience/CreateList.jsx";
+import AudienceSegments from "./pages/audience/segments";
+import AudienceCreateSegments from "./pages/audience/segments/CreateSegments.jsx";
 
 
 import Automation from "./pages/automation";
@@ -40,11 +42,15 @@ function App() {
         <Route path="/create-campaign" element={<CreateCampaign />} />
 
         <Route path="/audience-lists" element={<Audience />} />
-        <Route path="/audience-segments" element={<Audience />} />
+        <Route path="/audience-create-list" element={<CreateList />} />
+        <Route path="/audience-segments" element={<AudienceSegments />} />
+        <Route path="/audience-create-segments" element={<AudienceCreateSegments />} />
+
         <Route path="/audience-webforms" element={<Audience />} />
         <Route path="/audience-summary" element={<Audience />} />
         <Route path="/audience-analytics" element={<AudienceAnalytics />} />
-        <Route path="/audience-create-list" element={<CreateList />} />
+
+
 
         <Route path="/autoresponder" element={<Autoresponder />} />
         <Route path="/automation" element={<Automation />} />

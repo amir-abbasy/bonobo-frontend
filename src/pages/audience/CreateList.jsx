@@ -244,7 +244,7 @@ function Index() {
           // title="Choose crypto token"
           data={new Array(6).fill({ title: 'sad', value: '10' })}
           picker={() => {
-            return <Button className='bg-none border text-brand-primary  hover:bg-brand-primary/30' name='Add Tag'
+            return <Button className='bg-none border text-brand-primary  hover:bg-brand-primary/30 pl-3' name='Add Tag'
               iconLeft={() => <PlusIcon color='#4579ff' w="20" h="20" className='mr-2' />}
             />
           }}

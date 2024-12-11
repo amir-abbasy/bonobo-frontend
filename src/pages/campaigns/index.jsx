@@ -61,13 +61,14 @@ function Index() {
         {campaigns ? <Table
           // title="title"
           className=" text-gray-800 flex-row pt-12"
+          classNameContainer="p-0"
           data={campaigns}
           pageLength={mock_campaign.length / 10}
           showTitle={false}
           renderItem={(item, key, Title) => {
             return <div
               key={"campaigns_item_" + key}
-              className={`relative flex items-center justify-between rounded-md border-b border-brand-background  text-ellipsis whitespace-nowrap py-4 table-col-b table-col-[#f2f3f5] ${key % 2 == 0 ? 'table-col-b-[#f2f3f5]' : ''} dark:bg-secondary-800`}
+              className={`relative flex items-center justify-between rounded-md border-b border-brand-background  text-ellipsis whitespace-nowrap py-4 table-col-b table-col-[#f2f3f5] ${key % 2 == 0 ? 'table-col-b-[#f2f3f5]' : ''} dark:bg-secondary-800 hover:bg-brand-primary/5 px-4 transition-all duration-200`}
             >
               <div className="mr-16">
                 {/* {key == 0 && <p className="font-light text-gray-400 uppercase mb-4">Campaign Name</p>} */}
