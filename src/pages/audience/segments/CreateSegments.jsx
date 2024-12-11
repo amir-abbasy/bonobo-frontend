@@ -6,50 +6,7 @@ import Joi from 'joi';
 import { CloseIcon, DirectionIcon, PlusIcon } from '../../../components/Icons';
 import { useNavigate } from 'react-router-dom';
 import mock_audience from '../../../assets/data/mock_audience.json'
-
-
-const ConditionComponent = ({ data, onRemove, error }) => {
-  return <div className='my-8 flex flex-wrap items-center gap-x-4 p-4 rounded-lg border border-dashed ' >
-    <LucideIcon name="GripVertical" color={"#ccc"} size="20" />
-    <span>
-      <DropDown data={
-        ["Subscriber status", "Email verified", "Email rating", "Subscriber in portion", "Email address", "Domain", "First name", "Last name", "Contact tag"].map(_ => ({ value: _, title: _ }))
-      }
-        value={data.val1}
-        search={true}
-        className="w-full"
-        classNameContainer={`min-w-44 ${error && 'border border-red-500 rounded-xl'}`}
-      />
-    </span>
-
-    <span>
-      <DropDown data={
-        ["Is", "Is not"].map(_ => ({ value: _, title: _ }))
-      }
-        value={data.val2}
-        className="w-full"
-        classNameContainer={`min-w-44 ${error && 'border border-red-500 rounded-xl'}`}
-      />
-    </span>
-
-    <span>
-      <DropDown data={
-        ["Equals", "Not Equals", "Starts with", "Contains", "Ends with", "Is empty", "Is not empty"].map(_ => ({ value: _, title: _ }))
-      }
-        value={data.val3}
-        className="w-full"
-        classNameContainer={`min-w-44 ${error && 'border border-red-500 rounded-xl'}`}
-      />
-    </span>
-
-    <button onClick={onRemove}>
-      <LucideIcon name="Trash2" color={"#999"} size="20" />
-    </button>
-
-
-  </div>
-}
-
+import ConditionComponent from './ConditionComponent'
 
 function Index() {
   const [audiences, setAudience] = useState()
@@ -90,7 +47,7 @@ function Index() {
       <CloseIcon onClick={() => nav('/audience-lists')} />
     </div>
 
-    <div className='flex flex-col  justify-center mt-12 m-auto'>
+    <div className='flex flex-col  justify-center mt-12 m-auto max-w-3xl'>
       <DynamicForm
         data={[
           {
@@ -121,7 +78,7 @@ function Index() {
             <h2 className='text-xl my-4 font-semibold'>Selected List</h2>
             <p className='text-brand-primary cursor-pointer' onClick={() => setShowRecipientsList(true)}>Edit</p>
           </div>
-          <div className='flex gap-2'>
+          <div className='flex gap-2 flex-wrap'>
             {recipientsList.map(id => {
               return <div className='bg-brand-primary/10 px-4 p-2 rounded-full text-sm'>
                 {audiences[id]['name']}
@@ -163,9 +120,14 @@ function Index() {
 
       <div>
         {conditions.map((condition, key) => {
-          return <ConditionComponent data={condition} error={key > 0} key={key} onRemove={() => {
-            setConditions([conditions[0]])
-          }} />
+          return <ConditionComponent
+            key={key}
+            data={condition}
+            error={key > 0}
+            onRemove={() => {
+              let remove = conditions.filter((_, idx) => key != idx)
+              setConditions(remove)
+            }} />
         })}
 
         <Button className='bg-none border text-brand-primary  hover:bg-brand-primary/30 pl-3 mt-4'
