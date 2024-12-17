@@ -87,15 +87,20 @@ function Index() {
                             </div>
 
 
-                            <div className="flex-1">
-                                {Title('Last Updated')}
-                                <p className='max-w-40 font-normal'>
-                                    {item.last_updated.split(' ')[0]}
-                                </p>
+                            <div className="flex-1 ">
+                                {Title('List')}
+                                <div className='flex flex-wrap'>
+                                    {["Defualt List", "Custom List", "New List", "List 546"].map((li, idx) => {
+                                        if(key < idx)return
+                                        return <p className='max-w-40 font-normal rounded-full border p-1 px-3 mr-2'>
+                                            {li}
+                                        </p>
+                                    })}
+                                </div>
                             </div>
 
                             <div className="flex-1">
-                                {Title('Audience Count')}
+                                {Title('Count')}
                                 <p className='break-words text-normal max-w-40'>
                                     {item.audience_count}
                                 </p>
